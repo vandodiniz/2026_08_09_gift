@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nossa história</title>
+<meta name="description" content="Dois anos de nós.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+/* ===========================================================================
+   1. TOKENS
+   Cores dos gráficos validadas para daltonismo (validate_palette.js):
+   claro  #b3335c / #0e7fa6 sobre #fffaf7  — ΔE deutan 12.0
+   escuro #d94f79 / #2f9fc9 sobre #1a1114  — ΔE deutan 12.4
+   =========================================================================== */
+:root{
+  --surface:#fffaf7; --surface-2:#fff3ee; --surface-3:#ffeae2;
+  --ink:#2b1d22; --ink-2:#6b555c; --ink-3:#9c8288;
+  --line:#f0dcd4;
+  --serie-1:#b3335c; --serie-2:#0e7fa6;
+  --seq-1:#fbe3e9; --seq-2:#f2c0cd; --seq-3:#e496ac; --seq-4:#cf6b8b; --seq-5:#b3335c;
+  --grid:#f2e2db; --shadow:0 1px 2px rgba(43,29,34,.05),0 8px 28px rgba(43,29,34,.07);
+  --radius:14px; --maxw:1080px;
+  --serif:"Fraunces",Georgia,"Times New Roman",serif;
+  --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --surface:#1a1114; --surface-2:#221619; --surface-3:#2b1c21;
+    --ink:#f6e9e6; --ink-2:#c3aab0; --ink-3:#93787f;
+    --line:#3a262c;
+    --serie-1:#d94f79; --serie-2:#2f9fc9;
+    --seq-1:#3a1f29; --seq-2:#5c2b3c; --seq-3:#8a3a56; --seq-4:#b34670; --seq-5:#d94f79;
+    --grid:#332127; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.35);
+  }
+}
+
+/* =========================================================================== */
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0; background:var(--surface); color:var(--ink);
+  font-family:var(--sans); font-size:17px; line-height:1.65;
+  -webkit-font-smoothing:antialiased; overflow-x:hidden;
+}
+img{max-width:100%; display:block}
+h1,h2,h3{font-family:var(--serif); font-weight:400; line-height:1.15; margin:0}
+section{padding:clamp(64px,10vw,120px) 24px}
+.wrap{max-width:var(--maxw); margin:0 auto}
+.eyebrow{
+  font-size:12px; letter-spacing:.16em; text-transform:uppercase;
+  color:var(--ink-3); font-weight:600; margin:0 0 14px;
+}
+.section-title{font-size:clamp(30px,5vw,46px); margin-bottom:14px}
+.section-sub{color:var(--ink-2); max-width:56ch; margin:0 0 48px}
+
+/* --- reveal on scroll --- */
+.reveal{opacity:0; transform:translateY(22px); transition:opacity .7s ease,transform .7s cubic-bezier(.2,.7,.3,1)}
+.reveal.on{opacity:1; transform:none}
+@media (prefers-reduced-motion:reduce){
+  .reveal{opacity:1 !important; transform:none !important; transition:none}
+  html{scroll-behavior:auto}
+}
+
+/* ===========================================================================
+   CAPA
+   =========================================================================== */
+.capa{
+  min-height:100svh; display:grid; place-items:center; text-align:center;
+  position:relative; padding:40px 24px; overflow:hidden;
+}
+.capa-bg{position:absolute; inset:0; z-index:0}
+.capa-bg img{width:100%; height:100%; object-fit:cover; filter:saturate(.9)}
+.capa-bg::after{
+  content:""; position:absolute; inset:0;
+  background:radial-gradient(ellipse at center,rgba(255,250,247,.72) 0%,rgba(255,250,247,.92) 65%,var(--surface) 100%);
+}
+@media (prefers-color-scheme:dark){
+  .capa-bg::after{background:radial-gradient(ellipse at center,rgba(26,17,20,.62) 0%,rgba(26,17,20,.9) 65%,var(--surface) 100%)}
+}
+.capa-inner{position:relative; z-index:1; max-width:680px}
+.nomes{
+  font-family:var(--serif); font-size:clamp(15px,2.6vw,19px); letter-spacing:.28em;
+  text-transform:uppercase; color:var(--serie-1); margin-bottom:28px;
+}
+.nomes .amp{color:var(--ink-3); margin:0 .4em}
+.capa h1{font-size:clamp(52px,13vw,124px); font-weight:300; letter-spacing:-.03em}
+.capa h1 em{display:block; font-style:italic; color:var(--serie-1); font-weight:300}
+.capa-frase{color:var(--ink-2); margin:28px auto 0; max-width:44ch; font-size:16px}
+.contador{
+  margin-top:44px; display:inline-flex; gap:2px; align-items:stretch;
+  background:var(--surface-2); border:1px solid var(--line);
+  border-radius:var(--radius); overflow:hidden; box-shadow:var(--shadow);
+}
+.contador div{padding:14px 20px; min-width:82px}
+.contador div + div{border-left:1px solid var(--line)}
+.contador b{display:block; font-family:var(--serif); font-size:26px; font-weight:400; line-height:1.1}
+.contador span{font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3)}
+.scroll-cue{
+  position:absolute; bottom:26px; left:50%; transform:translateX(-50%); z-index:1;
+  font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-3);
+  text-decoration:none; display:grid; gap:8px; justify-items:center;
+}
+.scroll-cue::after{content:""; width:1px; height:34px; background:linear-gradient(var(--ink-3),transparent); animation:cue 2.2s ease-in-out infinite}
+@keyframes cue{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+
+/* ===========================================================================
+   TIMELINE
+   =========================================================================== */
+.timeline{position:relative; margin-top:20px}
+.timeline::before{
+  content:""; position:absolute; left:19px; top:8px; bottom:8px; width:2px;
+  background:linear-gradient(var(--line),var(--serie-1),var(--line)); opacity:.55;
+}
+.tl-item{position:relative; padding:0 0 46px 58px}
+.tl-dot{
+  position:absolute; left:8px; top:2px; width:24px; height:24px; border-radius:50%;
+  background:var(--surface); border:2px solid var(--line);
+  display:grid; place-items:center; font-size:12px; line-height:1;
+}
+.tl-item.destaque .tl-dot{border-color:var(--serie-1); box-shadow:0 0 0 5px color-mix(in srgb,var(--serie-1) 14%,transparent)}
+.tl-data{font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--serie-1); font-weight:600}
+.tl-item h3{font-size:clamp(21px,3vw,27px); margin:6px 0 10px}
+.tl-item p{margin:0; color:var(--ink-2)}
+.tl-foto{
+  margin-top:18px; border-radius:var(--radius); overflow:hidden;
+  border:1px solid var(--line); box-shadow:var(--shadow); max-width:440px; cursor:zoom-in;
+}
+.tl-foto img{width:100%; height:auto; transition:transform .5s ease}
+.tl-foto:hover img{transform:scale(1.03)}
+.selo{
+  display:inline-block; margin-left:8px; font-size:10px; letter-spacing:.12em;
+  text-transform:uppercase; font-weight:600; color:var(--serie-1); vertical-align:middle;
+  background:color-mix(in srgb,var(--serie-1) 10%,transparent); padding:3px 8px; border-radius:20px;
+}
+@media(min-width:820px){
+  .timeline::before{left:50%; transform:translateX(-50%)}
+  .tl-item{width:50%; padding:0 0 60px 0}
+  .tl-item:nth-child(odd){margin-left:0; padding-right:56px; text-align:right}
+  .tl-item:nth-child(even){margin-left:50%; padding-left:56px}
+  .tl-item:nth-child(odd) .tl-dot{left:auto; right:-12px}
+  .tl-item:nth-child(even) .tl-dot{left:-12px}
+  .tl-item:nth-child(odd) .tl-foto{margin-left:auto}
+}
+
+/* ===========================================================================
+   GALERIA
+   =========================================================================== */
+.galeria{columns:3 240px; column-gap:14px}
+.galeria figure{break-inside:avoid; margin:0 0 14px; position:relative; cursor:zoom-in;
+  border-radius:var(--radius); overflow:hidden; border:1px solid var(--line); box-shadow:var(--shadow)}
+.galeria img{width:100%; transition:transform .5s ease,filter .4s ease}
+.galeria figure:hover img{transform:scale(1.04)}
+.galeria figcaption{
+  position:absolute; inset:auto 0 0 0; padding:26px 14px 12px; font-size:13px; color:#fff;
+  background:linear-gradient(transparent,rgba(0,0,0,.7)); opacity:0; transition:opacity .3s;
+}
+.galeria figure:hover figcaption{opacity:1}
+
+/* --- lightbox --- */
+.lightbox{
+  position:fixed; inset:0; z-index:100; background:rgba(20,12,15,.94);
+  display:none; place-items:center; padding:24px; cursor:zoom-out;
+}
+.lightbox.on{display:grid}
+.lightbox img{max-width:min(1000px,92vw); max-height:82vh; object-fit:contain; border-radius:8px}
+.lightbox p{color:#f4e7e4; text-align:center; margin:16px 0 0; font-size:14px}
+.lightbox button{
+  position:absolute; top:18px; right:20px; background:none; border:0; color:#f4e7e4;
+  font-size:30px; cursor:pointer; line-height:1; padding:6px 12px;
+}
+
+/* ===========================================================================
+   RETROSPECTIVA
+   =========================================================================== */
+.retro{background:var(--surface-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+.kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; margin-bottom:44px}
+.kpi{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+  padding:20px 18px; box-shadow:var(--shadow);
+}
+.kpi b{display:block; font-family:var(--serif); font-size:clamp(30px,4.4vw,40px); font-weight:400;
+  line-height:1.05; letter-spacing:-.02em; font-variant-numeric:tabular-nums}
+.kpi span{display:block; font-size:12px; color:var(--ink-2); margin-top:8px}
+.hero-num{font-family:var(--serif); font-size:clamp(56px,11vw,104px); font-weight:300;
+  line-height:1; letter-spacing:-.03em; color:var(--serie-1); font-variant-numeric:tabular-nums}
+
+.card{
+  background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
+  padding:24px; box-shadow:var(--shadow); margin-bottom:20px;
+}
+.card h3{font-size:19px; margin-bottom:4px}
+@media(max-width:520px){
+  .card{padding:18px 16px}
+  .card table{font-size:13px !important}
+  section{padding:clamp(52px,9vw,120px) 18px}
+}
+.card .card-sub{font-size:13px; color:var(--ink-3); margin:0 0 20px}
+.grid-2{display:grid; grid-template-columns:1fr; gap:20px}
+@media(min-width:860px){.grid-2{grid-template-columns:1fr 1fr}.grid-2 .card{margin:0}}
+
+/* legenda */
+.legenda{display:flex; flex-wrap:wrap; gap:16px; margin:0 0 16px; padding:0; list-style:none; font-size:13px; color:var(--ink-2)}
+.legenda li{display:flex; align-items:center; gap:7px}
+.swatch{width:11px; height:11px; border-radius:3px; flex:none}
+
+/* gráficos */
+.chart{width:100%; overflow:visible; display:block}
+.chart .grid-line{stroke:var(--grid); stroke-width:1}
+.chart .axis-label{fill:var(--ink-3); font-size:11px; font-family:var(--sans)}
+.chart .val-label{fill:var(--ink); font-size:11px; font-weight:600; font-family:var(--sans); font-variant-numeric:tabular-nums}
+.chart rect.mark{transition:opacity .15s}
+.chart:hover rect.mark{opacity:.55}
+.chart rect.mark:hover, .chart rect.mark.hl{opacity:1}
+.chart .hit{fill:transparent}
+
+.tooltip{
+  position:fixed; z-index:90; pointer-events:none; opacity:0; transition:opacity .12s;
+  background:var(--ink); color:var(--surface); font-size:12.5px; line-height:1.5;
+  padding:8px 11px; border-radius:8px; white-space:nowrap; box-shadow:0 6px 20px rgba(0,0,0,.25);
+  font-variant-numeric:tabular-nums;
+}
+.tooltip.on{opacity:1}
+.tooltip b{font-weight:600}
+
+/* barra empilhada quem-falou-mais */
+.split{display:block; width:100%; height:46px; margin:6px 0 14px}
+.split-legenda{display:flex; justify-content:space-between; font-size:13px; color:var(--ink-2)}
+
+/* listas de ranking */
+.rank{list-style:none; margin:0; padding:0}
+.rank li{display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:12px; padding:7px 0}
+.rank li + li{border-top:1px solid var(--line)}
+.rank .lbl{font-size:14px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.rank .emoji{font-size:22px; line-height:1; width:28px}
+.rank .barra{height:8px; border-radius:4px; background:var(--seq-5); min-width:3px}
+.rank .n{font-size:13px; color:var(--ink-2); font-variant-numeric:tabular-nums; text-align:right; min-width:52px}
+
+/* tabela acessível */
+details.tabela{margin-top:14px; font-size:13px}
+details.tabela summary{cursor:pointer; color:var(--ink-3); font-size:12px; letter-spacing:.06em; text-transform:uppercase}
+details.tabela table{border-collapse:collapse; margin-top:12px; width:100%; font-variant-numeric:tabular-nums}
+details.tabela th,details.tabela td{text-align:left; padding:5px 10px 5px 0; border-bottom:1px solid var(--line); font-weight:400}
+details.tabela th{color:var(--ink-3); font-size:11px; text-transform:uppercase; letter-spacing:.08em}
+
+.aviso{
+  background:var(--surface-3); border:1px dashed var(--serie-1); border-radius:var(--radius);
+  padding:22px 24px; color:var(--ink-2); font-size:15px;
+}
+.aviso code{background:var(--surface); padding:2px 6px; border-radius:5px; font-size:13px; color:var(--ink)}
+
+/* ===========================================================================
+   MENSAGENS MARCANTES
+   =========================================================================== */
+.chat{max-width:600px; margin:0 auto; display:grid; gap:22px}
+.balao{max-width:82%; padding:14px 18px; border-radius:20px; position:relative; box-shadow:var(--shadow)}
+.balao p{margin:0; font-size:16px}
+.balao .meta{display:block; font-size:11px; letter-spacing:.08em; text-transform:uppercase; margin-top:9px; opacity:.72}
+.balao.ela{background:var(--surface-3); border-bottom-left-radius:5px; justify-self:start}
+.balao.ele{background:var(--serie-1); color:#fff; border-bottom-right-radius:5px; justify-self:end}
+.balao.ele .meta{color:rgba(255,255,255,.85)}
+
+/* ===========================================================================
+   CARTA
+   =========================================================================== */
+.carta{background:var(--surface-2); border-top:1px solid var(--line)}
+.carta-inner{max-width:640px; margin:0 auto; text-align:center}
+.carta p{font-family:var(--serif); font-size:clamp(19px,2.7vw,23px); line-height:1.75; color:var(--ink); margin:0 0 26px}
+.assinatura{font-family:var(--serif); font-style:italic; font-size:19px; color:var(--serie-1); margin-top:36px}
+.musica{margin-top:48px}
+.musica iframe{border-radius:12px; width:100%; max-width:520px; border:0}
+.rodape{text-align:center; padding:44px 24px 60px; color:var(--ink-3); font-size:13px}
+.coracao{color:var(--serie-1); display:inline-block; animation:bate 2.4s ease-in-out infinite}
+@keyframes bate{0%,100%{transform:scale(1)}12%{transform:scale(1.22)}24%{transform:scale(1)}36%{transform:scale(1.14)}}
+@media (prefers-reduced-motion:reduce){.coracao,.scroll-cue::after{animation:none}}
+</style>
+</head>
+<body>
+
+<!-- ======================= CAPA ======================= -->
+<header class="capa" id="topo">
+  <div class="capa-bg" id="capaBg"></div>
+  <div class="capa-inner">
+    <div class="nomes" id="nomes"></div>
+    <h1 id="capaTitulo"></h1>
+    <p class="capa-frase" id="capaFrase"></p>
+    <div class="contador" id="contador"></div>
+  </div>
+  <a class="scroll-cue" href="#historia">o começo</a>
+</header>
+
+<!-- ======================= TIMELINE ======================= -->
+<section id="historia">
+  <div class="wrap">
+    <p class="eyebrow reveal">Linha do tempo</p>
+    <h2 class="section-title reveal">Como a gente chegou até aqui</h2>
+    <p class="section-sub reveal">Os dias que não dá para esquecer, em ordem.</p>
+    <div class="timeline" id="timeline"></div>
+  </div>
+</section>
+
+<!-- ======================= GALERIA ======================= -->
+<section id="fotos" hidden>
+  <div class="wrap">
+    <p class="eyebrow reveal">Fotos</p>
+    <h2 class="section-title reveal">O que a gente guardou</h2>
+    <p class="section-sub reveal">Clique para ver maior.</p>
+    <div class="galeria reveal" id="galeria"></div>
+  </div>
+</section>
+
+<!-- ======================= RETROSPECTIVA ======================= -->
+<section class="retro" id="mensagens">
+  <div class="wrap">
+    <p class="eyebrow reveal">Retrospectiva</p>
+    <h2 class="section-title reveal">Dois anos de conversa</h2>
+    <p class="section-sub reveal">Tudo que a gente escreveu um para o outro, contado em números.</p>
+    <div id="retro"></div>
+  </div>
+</section>
+
+<!-- ======================= MENSAGENS MARCANTES ======================= -->
+<section id="marcantes" hidden>
+  <div class="wrap">
+    <p class="eyebrow reveal">Do arquivo</p>
+    <h2 class="section-title reveal">Mensagens que eu guardei</h2>
+    <p class="section-sub reveal">Algumas coisas merecem ser lidas de novo.</p>
+    <div class="chat reveal" id="chat"></div>
+  </div>
+</section>
+
+<!-- ======================= CARTA ======================= -->
+<section class="carta" id="carta">
+  <div class="wrap carta-inner">
+    <p class="eyebrow reveal">Para você</p>
+    <h2 class="section-title reveal" id="cartaTitulo"></h2>
+    <div class="reveal" id="cartaTexto" style="margin-top:40px"></div>
+    <p class="assinatura reveal" id="cartaAssinatura"></p>
+    <div class="musica reveal" id="musica"></div>
+  </div>
+</section>
+
+<p class="rodape">feito à mão, com <span class="coracao">❤</span></p>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada">
+  <button type="button" aria-label="Fechar">&times;</button>
+  <div><img id="lbImg" alt=""><p id="lbCap"></p></div>
+</div>
+
+<div class="tooltip" id="tooltip" role="status" aria-live="polite"></div>
+
+<script src="dados.js"></script>
+<script src="stats.js" onerror="window.STATS=null"></script>
+<script>
+/* ===========================================================================
+   AJUDANTES
+   =========================================================================== */
+const D = window.DADOS || {};
+const S = window.STATS || null;
+const $  = (s,r=document)=>r.querySelector(s);
+const el = (t,c,h)=>{const n=document.createElement(t); if(c)n.className=c; if(h!=null)n.innerHTML=h; return n;};
+const num = n => (n==null?'—':n.toLocaleString('pt-BR'));
+const esc = s => String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const MES_EXT = ['janeiro','fevereiro','março','abril','maio','junho','julho','agosto','setembro','outubro','novembro','dezembro'];
+
+function dataPT(iso,{curto=false}={}){
+  if(!iso) return '';
+  const [a,m,d] = iso.slice(0,10).split('-').map(Number);
+  return curto ? `${d} ${MES_EXT[m-1].slice(0,3)} ${a}` : `${d} de ${MES_EXT[m-1]} de ${a}`;
+}
+function diasEntre(isoA, isoB){
+  const a = new Date(isoA+'T00:00:00'), b = isoB ? new Date(isoB+'T00:00:00') : new Date();
+  return Math.floor((b-a)/86400000);
+}
+
+/* ===========================================================================
+   CAPA
+   =========================================================================== */
+(function capa(){
+  const c = D.capa || {};
+  $('#nomes').innerHTML = `${esc(c.nomeEle||'')}<span class="amp">&amp;</span>${esc(c.nomeEla||'')}`;
+  $('#capaTitulo').innerHTML = `${esc(c.titulo||'Dois anos')}<em>${esc(c.subtitulo||'de nós')}</em>`;
+  $('#capaFrase').textContent = c.fraseAbertura || '';
+  document.title = `${c.nomeEle||''} & ${c.nomeEla||''} — nossa história`;
+
+  if(c.fotoCapa){
+    const bg = $('#capaBg');
+    bg.innerHTML = `<img src="${esc(c.fotoCapa)}" alt="">`;
+    bg.firstChild.onerror = ()=>{ bg.innerHTML = ''; };
+  }
+
+  if(c.dataInicio){
+    const dias  = Math.max(0, diasEntre(c.dataInicio));
+    const anos  = Math.floor(dias/365.25);
+    const meses = Math.floor((dias - anos*365.25)/30.44);
+    const partes = [
+      [anos,  anos===1?'ano':'anos'],
+      [meses, meses===1?'mês':'meses'],
+      [num(dias), 'dias'],
+      [num(dias*24), 'horas'],
+    ];
+    $('#contador').innerHTML = partes.map(([v,l])=>`<div><b>${v}</b><span>${l}</span></div>`).join('');
+  }
+})();
+
+/* ===========================================================================
+   TIMELINE
+   =========================================================================== */
+(function timeline(){
+  const itens = (D.timeline||[]).slice().sort((a,b)=>(a.data||'').localeCompare(b.data||''));
+  const alvo = $('#timeline');
+  if(!itens.length){ alvo.closest('section').hidden = true; return; }
+
+  itens.forEach(it=>{
+    const art = el('article','tl-item reveal' + (it.destaque?' destaque':''));
+    art.innerHTML = `
+      <div class="tl-dot" aria-hidden="true">${it.emoji||''}</div>
+      <div class="tl-data">${dataPT(it.data)}</div>
+      <h3>${esc(it.titulo||'')}${it.destaque?'<span class="selo">marco</span>':''}</h3>
+      <p>${esc(it.texto||'')}</p>`;
+    if(it.foto){
+      // A figura entra já no DOM; se o arquivo não existir, ela se remove sozinha.
+      const fig = el('div','tl-foto');
+      fig.innerHTML = `<img src="${esc(it.foto)}" alt="${esc(it.titulo||'')}" loading="lazy">`;
+      fig.firstChild.onerror = ()=>fig.remove();
+      fig.onclick = ()=>abrirLightbox(it.foto, it.titulo||'');
+      art.appendChild(fig);
+    }
+    alvo.appendChild(art);
+  });
+})();
+
+/* ===========================================================================
+   GALERIA + LIGHTBOX
+   =========================================================================== */
+(function galeria(){
+  const fotos = D.galeria||[];
+  if(!fotos.length) return;
+  const alvo = $('#galeria');
+  const secao = alvo.closest('section');
+  secao.hidden = false;
+  let vivas = fotos.length;
+  fotos.forEach(f=>{
+    const fig = el('figure');
+    fig.innerHTML = `<img src="${esc(f.arquivo)}" alt="${esc(f.legenda||'')}" loading="lazy">`
+                  + (f.legenda ? `<figcaption>${esc(f.legenda)}</figcaption>` : '');
+    // Se o arquivo não existir, some com a foto — e com a seção, se sobrarem zero.
+    fig.firstChild.onerror = ()=>{ fig.remove(); if(--vivas<=0) secao.hidden = true; };
+    fig.onclick = ()=>abrirLightbox(f.arquivo, f.legenda||'');
+    alvo.appendChild(fig);
+  });
+})();
+
+const lb = $('#lightbox');
+function abrirLightbox(src, cap){
+  $('#lbImg').src = src; $('#lbImg').alt = cap; $('#lbCap').textContent = cap;
+  lb.classList.add('on'); document.body.style.overflow='hidden';
+}
+function fecharLightbox(){ lb.classList.remove('on'); document.body.style.overflow=''; }
+lb.addEventListener('click', fecharLightbox);
+document.addEventListener('keydown', e=>{ if(e.key==='Escape') fecharLightbox(); });
+
+/* ===========================================================================
+   GRÁFICOS  (SVG puro — sem biblioteca)
+   Regras aplicadas: uma escala por eixo, série única em um só matiz,
+   rótulo direto só no valor de destaque, tooltip no hover, tabela alternativa.
+   =========================================================================== */
+const tip = $('#tooltip');
+function mostrarTip(e, html){
+  tip.innerHTML = html; tip.classList.add('on');
+  const r = tip.getBoundingClientRect();
+  let x = e.clientX + 14, y = e.clientY - r.height - 12;
+  if(x + r.width > innerWidth - 8) x = e.clientX - r.width - 14;
+  if(y < 8) y = e.clientY + 18;
+  tip.style.left = x+'px'; tip.style.top = y+'px';
+}
+function esconderTip(){ tip.classList.remove('on'); }
+
+const SVGNS = 'http://www.w3.org/2000/svg';
+const svgEl = (t,attrs={})=>{const n=document.createElementNS(SVGNS,t);
+  for(const k in attrs) n.setAttribute(k,attrs[k]); return n;};
+
+/**
+ * Barras verticais, série única, matiz único.
+ * dados: [{rotulo, valor, sub}]
+ */
+function barras(dados, {altura=200, unidade='mensagens', largura=760}={}){
+  const W = Math.max(280, largura);
+  const L=40, R=8, T=26, B=30, H=altura+T+B;
+  // 1 unidade do viewBox = 1 pixel real → o texto nunca fica esticado nem minúsculo.
+  const svg = svgEl('svg',{class:'chart', viewBox:`0 0 ${W} ${H}`, width:W, height:H, role:'img'});
+  const pico = Math.max(1, ...dados.map(d=>d.valor));
+  const iMax = dados.findIndex(d=>d.valor===pico);
+  // Teto "redondo" acima do pico: assim a barra mais alta nunca encosta na linha
+  // de topo e o rótulo direto não colide com o número do eixo.
+  const passo = Math.pow(10, Math.floor(Math.log10(pico))) / 2;
+  const max = Math.max(passo, Math.ceil((pico * 1.12) / passo) * passo);
+  const larguraFaixa = (W-L-R)/dados.length;
+  const larguraBarra = Math.max(3, larguraFaixa - 4);   // folga de 4px entre barras
+  // Mostra só os rótulos de eixo que cabem sem se encavalar (~34px cada).
+  const rotuloCada = Math.max(1, Math.ceil(46/larguraFaixa));
+
+  // grade + eixo Y (3 linhas, discretas)
+  [0,.5,1].forEach(f=>{
+    const y = T + altura - altura*f;
+    svg.appendChild(svgEl('line',{class:'grid-line', x1:L, x2:W-R, y1:y, y2:y}));
+    const t = svgEl('text',{class:'axis-label', x:L-8, y:y+4, 'text-anchor':'end'});
+    t.textContent = num(Math.round(max*f)); svg.appendChild(t);
+  });
+
+  dados.forEach((d,i)=>{
+    const h = Math.max(2, (d.valor/max)*altura);
+    const x = L + i*larguraFaixa + (larguraFaixa-larguraBarra)/2;
+    const y = T + altura - h;
+    const r = svgEl('rect',{class:'mark', x, y, width:larguraBarra, height:h,
+                            rx:Math.min(4,larguraBarra/2), fill:'var(--seq-5)'});
+    if(i===iMax){ r.classList.add('hl');
+      const lab = svgEl('text',{class:'val-label', x:x+larguraBarra/2, y:y-8, 'text-anchor':'middle'});
+      lab.textContent = num(d.valor); svg.appendChild(lab);
+    }
+    svg.appendChild(r);
+
+    // alvo de clique/hover maior que a barra
+    const hit = svgEl('rect',{class:'hit', x:L+i*larguraFaixa, y:T, width:larguraFaixa, height:altura});
+    hit.addEventListener('mousemove', e=>{
+      r.classList.add('hl');   // a barra sob o cursor volta ao tom cheio
+      mostrarTip(e, `<b>${esc(d.rotulo)}</b><br>${num(d.valor)} ${unidade}${d.sub?'<br>'+esc(d.sub):''}`);
+    });
+    hit.addEventListener('mouseleave', ()=>{
+      if(i!==iMax) r.classList.remove('hl');
+      esconderTip();
+    });
+    svg.appendChild(hit);
+
+    if(i % rotuloCada === 0){
+      const t = svgEl('text',{class:'axis-label', x:x+larguraBarra/2, y:T+altura+18, 'text-anchor':'middle'});
+      t.textContent = d.rotulo; svg.appendChild(t);
+    }
+  });
+  return svg;
+}
+
+/**
+ * Envelope responsivo: mede a largura real disponível e redesenha o gráfico
+ * sempre que ela muda (girar o celular, redimensionar a janela).
+ */
+function grafico(construir){
+  const caixa = el('div');
+  caixa.style.width = '100%';
+  let ultima = 0;
+  const desenhar = () => {
+    const w = Math.round(caixa.clientWidth);
+    if(!w || Math.abs(w - ultima) < 8) return;
+    ultima = w;
+    caixa.replaceChildren(construir(w));
+  };
+  if('ResizeObserver' in window) new ResizeObserver(desenhar).observe(caixa);
+  else addEventListener('resize', desenhar);
+  requestAnimationFrame(desenhar);
+  return caixa;
+}
+
+/** Tabela alternativa (acessibilidade) */
+function tabela(dados, cab=['Período','Mensagens']){
+  const d = el('details','tabela');
+  d.innerHTML = `<summary>ver os números</summary>
+    <table><thead><tr><th>${cab[0]}</th><th>${cab[1]}</th></tr></thead><tbody>
+    ${dados.map(x=>`<tr><td>${esc(x.rotulo)}</td><td>${num(x.valor)}</td></tr>`).join('')}
+    </tbody></table>`;
+  return d;
+}
+
+/** Barra empilhada única: quem falou mais. Rótulo direto em cada segmento. */
+function barraDividida(a, b){
+  const total = a.valor + b.valor || 1;
+  const W=760, H=46, GAP=2;
+  const svg = svgEl('svg',{class:'split', viewBox:`0 0 ${W} ${H}`, preserveAspectRatio:'none', role:'img'});
+  const wa = Math.max(0,(a.valor/total)*W - GAP/2);
+  const wb = Math.max(0,(b.valor/total)*W - GAP/2);
+  [[0,wa,'var(--serie-1)',a],[wa+GAP,wb,'var(--serie-2)',b]].forEach(([x,w,fill,d])=>{
+    const r = svgEl('rect',{x, y:0, width:w, height:H, rx:6, fill});
+    r.addEventListener('mousemove', e=>mostrarTip(e,
+      `<b>${esc(d.nome)}</b><br>${num(d.valor)} mensagens · ${Math.round(d.valor/total*100)}%`));
+    r.addEventListener('mouseleave', esconderTip);
+    svg.appendChild(r);
+  });
+  return svg;
+}
+
+/** Lista de ranking com barra proporcional (mesmo matiz) */
+function ranking(itens, {emoji=false, unidade=''}={}){
+  const max = Math.max(1, ...itens.map(i=>i.valor));
+  const ul = el('ul','rank');
+  itens.forEach(i=>{
+    const li = el('li');
+    li.innerHTML = `<span class="${emoji?'emoji':'lbl'}">${esc(i.rotulo)}</span>
+      <span class="barra" style="width:${(i.valor/max)*100}%"></span>
+      <span class="n">${num(i.valor)}${unidade}</span>`;
+    ul.appendChild(li);
+  });
+  return ul;
+}
+
+/* ===========================================================================
+   RETROSPECTIVA
+   =========================================================================== */
+(function retro(){
+  const alvo = $('#retro');
+
+  if(!S){
+    alvo.innerHTML = `<div class="aviso reveal">
+      <strong>As estatísticas ainda não foram geradas.</strong><br><br>
+      Exporte a conversa do WhatsApp e rode:<br><br>
+      <code>python3 parser/analisar_whatsapp.py conversa.txt</code><br><br>
+      Isso cria o arquivo <code>stats.js</code> e esta seção se preenche sozinha.
+    </div>`;
+    return;
+  }
+
+  const p = S.periodo, t = S.totais, pes = S.pessoas, rec = S.recordes;
+  const [p1, p2] = pes;
+
+  // --- número herói + KPIs -------------------------------------------------
+  const topo = el('div','reveal');
+  topo.innerHTML = `
+    <div style="margin-bottom:34px">
+      <div class="hero-num">${num(t.mensagens)}</div>
+      <p style="margin:6px 0 0;color:var(--ink-2)">mensagens trocadas entre
+      ${dataPT(p.inicio,{curto:true})} e ${dataPT(p.fim,{curto:true})}</p>
+    </div>
+    <div class="kpis">
+      <div class="kpi"><b>${num(t.palavras)}</b><span>palavras escritas</span></div>
+      <div class="kpi"><b>${num(t.mediaPorDia)}</b><span>mensagens por dia, em média</span></div>
+      <div class="kpi"><b>${p.percentualDiasFalando}%</b><span>dos dias com alguma conversa</span></div>
+      <div class="kpi"><b>${num(t.emojis)}</b><span>emojis usados</span></div>
+    </div>`;
+  alvo.appendChild(topo);
+
+  // --- quem falou mais -----------------------------------------------------
+  const cQuem = el('div','card reveal');
+  cQuem.innerHTML = `<h3>Quem falou mais</h3>
+    <p class="card-sub">Total de mensagens de cada um, lado a lado.</p>
+    <ul class="legenda">
+      <li><span class="swatch" style="background:var(--serie-1)"></span>${esc(p1.nome)}</li>
+      <li><span class="swatch" style="background:var(--serie-2)"></span>${esc(p2.nome)}</li>
+    </ul>`;
+  cQuem.appendChild(barraDividida({nome:p1.nome, valor:p1.mensagens},{nome:p2.nome, valor:p2.mensagens}));
+  const totalM = p1.mensagens + p2.mensagens;
+  cQuem.appendChild(el('div','split-legenda',
+    `<span><strong>${esc(p1.nome)}</strong> · ${num(p1.mensagens)} (${Math.round(p1.mensagens/totalM*100)}%)</span>
+     <span><strong>${esc(p2.nome)}</strong> · ${num(p2.mensagens)} (${Math.round(p2.mensagens/totalM*100)}%)</span>`));
+
+  const linhas = [
+    ['Palavras por mensagem', p1.mediaPalavrasPorMensagem, p2.mediaPalavrasPorMensagem],
+    ['Fotos e áudios enviados', num(p1.midias), num(p2.midias)],
+    ['Tempo de resposta (mediana)', p1.tempoRespostaMedianaMin!=null?p1.tempoRespostaMedianaMin+' min':'—',
+                                    p2.tempoRespostaMedianaMin!=null?p2.tempoRespostaMedianaMin+' min':'—'],
+    ['Dias em que mandou a 1ª mensagem', num(p1.primeiroDoDia), num(p2.primeiroDoDia)],
+  ];
+  cQuem.appendChild(el('div','', `<table style="width:100%;border-collapse:collapse;margin-top:22px;font-size:14px;font-variant-numeric:tabular-nums">
+    <thead><tr>
+      <th style="text-align:left;padding:6px 0;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600"></th>
+      <th style="text-align:right;padding:6px 0;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600">${esc(p1.nome)}</th>
+      <th style="text-align:right;padding:6px 0;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-3);font-weight:600">${esc(p2.nome)}</th>
+    </tr></thead><tbody>
+    ${linhas.map(([l,a,b])=>`<tr>
+      <td style="padding:8px 0;border-top:1px solid var(--line);color:var(--ink-2)">${l}</td>
+      <td style="padding:8px 0 8px 16px;border-top:1px solid var(--line);text-align:right;white-space:nowrap">${a}</td>
+      <td style="padding:8px 0 8px 16px;border-top:1px solid var(--line);text-align:right;white-space:nowrap">${b}</td></tr>`).join('')}
+    </tbody></table>`));
+  alvo.appendChild(cQuem);
+
+  // --- mensagens por mês ---------------------------------------------------
+  const dMes = S.serieMensal.map(m=>({rotulo:m.rotulo, valor:m.total}));
+  const cMes = el('div','card reveal');
+  cMes.innerHTML = `<h3>Mês a mês</h3><p class="card-sub">Quanto a gente se falou ao longo dos dois anos. Passe o mouse para ver cada mês.</p>`;
+  cMes.appendChild(grafico(w => barras(dMes,{altura:190, largura:w})));
+  cMes.appendChild(tabela(dMes,['Mês','Mensagens']));
+  alvo.appendChild(cMes);
+
+  // --- hora do dia + dia da semana ----------------------------------------
+  const g2 = el('div','grid-2 reveal');
+
+  const dHora = S.porHora.map(h=>({rotulo:String(h.hora).padStart(2,'0')+'h', valor:h.total}));
+  const cHora = el('div','card');
+  const pico = S.porHora.reduce((a,b)=>b.total>a.total?b:a);
+  cHora.innerHTML = `<h3>A que horas</h3>
+    <p class="card-sub">Nosso horário é ${String(pico.hora).padStart(2,'0')}h — é quando a gente mais se fala.</p>`;
+  cHora.appendChild(grafico(w => barras(dHora,{altura:150, largura:w})));
+  cHora.appendChild(tabela(dHora,['Hora','Mensagens']));
+  g2.appendChild(cHora);
+
+  const dSem = S.porDiaSemana.map(d=>({rotulo:d.dia.slice(0,3), valor:d.total}));
+  const cSem = el('div','card');
+  const melhorDia = S.porDiaSemana.reduce((a,b)=>b.total>a.total?b:a);
+  cSem.innerHTML = `<h3>Que dia da semana</h3>
+    <p class="card-sub">${melhorDia.dia} é o dia em que a conversa mais rende.</p>`;
+  cSem.appendChild(grafico(w => barras(dSem,{altura:150, largura:w})));
+  cSem.appendChild(tabela(dSem,['Dia','Mensagens']));
+  g2.appendChild(cSem);
+  alvo.appendChild(g2);
+
+  // --- emojis + palavras ---------------------------------------------------
+  const g3 = el('div','grid-2 reveal');
+  if(S.emojisTop.length){
+    const c = el('div','card');
+    c.innerHTML = `<h3>Nossos emojis</h3><p class="card-sub">Os dez mais usados nos dois anos.</p>`;
+    c.appendChild(ranking(S.emojisTop.map(e=>({rotulo:e.emoji, valor:e.n})),{emoji:true}));
+    g3.appendChild(c);
+  }
+  if(S.palavrasTop.length){
+    const c = el('div','card');
+    c.innerHTML = `<h3>Nossas palavras</h3><p class="card-sub">Fora as palavrinhas de ligação, foi isso que a gente mais escreveu.</p>`;
+    c.appendChild(ranking(S.palavrasTop.slice(0,12).map(w=>({rotulo:w.palavra, valor:w.n}))));
+    g3.appendChild(c);
+  }
+  alvo.appendChild(g3);
+
+  // --- expressões ----------------------------------------------------------
+  if(S.expressoes && S.expressoes.length){
+    const c = el('div','card reveal');
+    c.innerHTML = `<h3>Quantas vezes a gente disse</h3>
+      <p class="card-sub">Contagem por pessoa.</p>
+      <ul class="legenda">
+        <li><span class="swatch" style="background:var(--serie-1)"></span>${esc(p1.nome)}</li>
+        <li><span class="swatch" style="background:var(--serie-2)"></span>${esc(p2.nome)}</li>
+      </ul>
+      <table style="width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums">
+      <tbody>${S.expressoes.map(e=>{
+        const a = e.porPessoa[p1.nome]||0, b = e.porPessoa[p2.nome]||0, tt = a+b||1;
+        return `<tr>
+          <td style="padding:11px 12px 11px 0;border-top:1px solid var(--line);white-space:nowrap">“${esc(e.expressao)}”</td>
+          <td style="padding:11px 0;border-top:1px solid var(--line);width:100%">
+            <span style="display:flex;gap:2px;height:9px">
+              <span style="background:var(--serie-1);width:${a/tt*100}%;border-radius:5px 0 0 5px"></span>
+              <span style="background:var(--serie-2);width:${b/tt*100}%;border-radius:0 5px 5px 0"></span>
+            </span>
+          </td>
+          <td style="padding:11px 0 11px 14px;border-top:1px solid var(--line);text-align:right;white-space:nowrap;color:var(--ink-2)">
+            <strong style="color:var(--ink)">${num(e.total)}</strong>
+            <span style="font-size:12px;color:var(--ink-3)"> (${num(a)}/${num(b)})</span></td>
+        </tr>`;}).join('')}</tbody></table>`;
+    alvo.appendChild(c);
+  }
+
+  // --- recordes ------------------------------------------------------------
+  const cRec = el('div','card reveal');
+  cRec.innerHTML = `<h3>Recordes</h3><p class="card-sub">Os extremos desses dois anos.</p>
+    <div class="kpis" style="margin:0">
+      <div class="kpi"><b>${num(rec.mensagensNoDiaRecorde)}</b><span>mensagens em ${dataPT(rec.diaRecorde,{curto:true})} — o dia em que mais falamos</span></div>
+      <div class="kpi"><b>${num(rec.maiorSequenciaDias)}</b><span>dias seguidos sem falhar um dia (${dataPT(rec.sequenciaInicio,{curto:true})} a ${dataPT(rec.sequenciaFim,{curto:true})})</span></div>
+      <div class="kpi"><b>${num(p.diasComConversa)}</b><span>dias com conversa, de ${num(p.diasTotais)} possíveis</span></div>
+      <div class="kpi"><b>${num(t.midias)}</b><span>fotos, áudios e vídeos enviados</span></div>
+    </div>`;
+  alvo.appendChild(cRec);
+})();
+
+/* ===========================================================================
+   MENSAGENS MARCANTES
+   =========================================================================== */
+(function marcantes(){
+  const itens = D.mensagensMarcantes||[];
+  if(!itens.length) return;
+  const alvo = $('#chat');
+  alvo.closest('section').hidden = false;
+  itens.forEach(m=>{
+    const b = el('div','balao ' + (m.de==='ele'?'ele':'ela'));
+    b.innerHTML = `<p>${esc(m.texto)}</p>
+      <span class="meta">${dataPT(m.data,{curto:true})}${m.contexto?' · '+esc(m.contexto):''}</span>`;
+    alvo.appendChild(b);
+  });
+})();
+
+/* ===========================================================================
+   CARTA E MÚSICA
+   =========================================================================== */
+(function carta(){
+  const c = D.carta||{};
+  $('#cartaTitulo').textContent = c.titulo || '';
+  $('#cartaTexto').innerHTML = (c.paragrafos||[]).map(p=>`<p>${esc(p)}</p>`).join('');
+  $('#cartaAssinatura').textContent = c.assinatura || '';
+
+  const m = D.musica||{};
+  if(m.spotify){
+    const id = (m.spotify.match(/(track|playlist|album)\/([A-Za-z0-9]+)/)||[]).slice(1);
+    if(id.length===2){
+      $('#musica').innerHTML = `<p class="eyebrow">${esc(m.legenda||'')}</p>
+        <iframe style="height:${id[0]==='track'?152:352}px" loading="lazy"
+          src="https://open.spotify.com/embed/${id[0]}/${id[1]}?utm_source=generator"
+          allow="encrypted-media" title="Trilha sonora"></iframe>`;
+    }
+  }
+})();
+
+/* ===========================================================================
+   REVELAR AO ROLAR
+   =========================================================================== */
+(function reveal(){
+  const alvos = document.querySelectorAll('.reveal');
+  if(!('IntersectionObserver' in window)){ alvos.forEach(a=>a.classList.add('on')); return; }
+  const io = new IntersectionObserver((ents)=>{
+    ents.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('on'); io.unobserve(e.target); } });
+  },{threshold:.08, rootMargin:'0px 0px -40px 0px'});
+  alvos.forEach(a=>io.observe(a));
+})();
+</script>
+</body>
+</html>
