@@ -394,7 +394,7 @@ function diasEntre(isoA, isoB){
   if(c.dataInicio){
     const dias  = Math.max(0, diasEntre(c.dataInicio));
     const anos  = Math.floor(dias/365.25);
-    const meses = Math.floor((dias - anos*365.25)/30.44);
+    const meses = anos*12 + Math.floor((dias - anos*365.25)/30.44);
     const partes = [
       [anos,  anos===1?'ano':'anos'],
       [meses, meses===1?'mês':'meses'],

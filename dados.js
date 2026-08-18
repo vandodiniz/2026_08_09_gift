@@ -15,12 +15,12 @@ window.DADOS = {
   // ---------------------------------------------------------------------------
   capa: {
     nomeEle: "Vando",
-    nomeEla: "___",              // <-- coloque o nome dela
+    nomeEla: "Mari",              // <-- coloque o nome dela
     dataInicio: "2024-09-08",    // o dia em que vocês começaram a namorar
     titulo: "Dois anos",
     subtitulo: "de nós",
     fraseAbertura: "Uma linha do tempo da nossa história — com tudo o que ela guarda.",
-    fotoCapa: "fotos/capa.jpg",  // deixe "" se ainda não tiver a foto
+    fotoCapa: "",  // "fotos/capa.jpg" || deixe "" se ainda não tiver a foto
   },
 
   // ---------------------------------------------------------------------------
