@@ -11,29 +11,27 @@
 <style>
 /* ===========================================================================
    1. TOKENS
-   Cores dos gráficos validadas para daltonismo (validate_palette.js):
-   claro  #b3335c / #0e7fa6 sobre #fffaf7  — ΔE deutan 12.0
-   escuro #d94f79 / #2f9fc9 sobre #1a1114  — ΔE deutan 12.4
+   Paleta: #55A6BF · #3E757C · #ECB606 · #BC0737 · #EBE1B9
    =========================================================================== */
 :root{
-  --surface:#fffaf7; --surface-2:#fff3ee; --surface-3:#ffeae2;
-  --ink:#2b1d22; --ink-2:#6b555c; --ink-3:#9c8288;
-  --line:#f0dcd4;
-  --serie-1:#b3335c; --serie-2:#0e7fa6;
-  --seq-1:#fbe3e9; --seq-2:#f2c0cd; --seq-3:#e496ac; --seq-4:#cf6b8b; --seq-5:#b3335c;
-  --grid:#f2e2db; --shadow:0 1px 2px rgba(43,29,34,.05),0 8px 28px rgba(43,29,34,.07);
+  --surface:#FAF9F3; --surface-2:#F4EDD8; --surface-3:#EBE1B9;
+  --ink:#1A1A10; --ink-2:#5C5435; --ink-3:#9A8E62;
+  --line:#D8CEAD;
+  --serie-1:#BC0737; --serie-2:#3E757C;
+  --seq-1:#FCE8EE; --seq-2:#F5BFCC; --seq-3:#E888A0; --seq-4:#D34870; --seq-5:#BC0737;
+  --grid:#E5DAB8; --shadow:0 1px 2px rgba(26,26,16,.05),0 8px 28px rgba(26,26,16,.08);
   --radius:14px; --maxw:1080px;
   --serif:"Fraunces",Georgia,"Times New Roman",serif;
   --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
 }
 @media (prefers-color-scheme:dark){
   :root{
-    --surface:#1a1114; --surface-2:#221619; --surface-3:#2b1c21;
-    --ink:#f6e9e6; --ink-2:#c3aab0; --ink-3:#93787f;
-    --line:#3a262c;
-    --serie-1:#d94f79; --serie-2:#2f9fc9;
-    --seq-1:#3a1f29; --seq-2:#5c2b3c; --seq-3:#8a3a56; --seq-4:#b34670; --seq-5:#d94f79;
-    --grid:#332127; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.35);
+    --surface:#0C1214; --surface-2:#131C1F; --surface-3:#1C2A2D;
+    --ink:#F0E8D5; --ink-2:#B5A882; --ink-3:#857860;
+    --line:#283338;
+    --serie-1:#E82850; --serie-2:#55A6BF;
+    --seq-1:#2A1018; --seq-2:#4A1828; --seq-3:#7A2038; --seq-4:#AB2848; --seq-5:#E82850;
+    --grid:#1E2D30; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.35);
   }
 }
 
@@ -75,10 +73,10 @@ section{padding:clamp(64px,10vw,120px) 24px}
 .capa-bg img{width:100%; height:100%; object-fit:cover; filter:saturate(.9)}
 .capa-bg::after{
   content:""; position:absolute; inset:0;
-  background:radial-gradient(ellipse at center,rgba(255,250,247,.72) 0%,rgba(255,250,247,.92) 65%,var(--surface) 100%);
+  background:radial-gradient(ellipse at center,rgba(250,249,243,.72) 0%,rgba(250,249,243,.92) 65%,var(--surface) 100%);
 }
 @media (prefers-color-scheme:dark){
-  .capa-bg::after{background:radial-gradient(ellipse at center,rgba(26,17,20,.62) 0%,rgba(26,17,20,.9) 65%,var(--surface) 100%)}
+  .capa-bg::after{background:radial-gradient(ellipse at center,rgba(12,18,20,.62) 0%,rgba(12,18,20,.9) 65%,var(--surface) 100%)}
 }
 .capa-inner{position:relative; z-index:1; max-width:680px}
 .nomes{
@@ -296,7 +294,7 @@ details.tabela th{color:var(--ink-3); font-size:11px; text-transform:uppercase; 
   <div class="wrap">
     <p class="eyebrow reveal">Linha do tempo</p>
     <h2 class="section-title reveal">Como a gente chegou até aqui</h2>
-    <p class="section-sub reveal">Os dias que não dá para esquecer, em ordem.</p>
+    <p class="section-sub reveal">Os dias que não dá para esquecer, em ordem (eu acho).</p>
     <div class="timeline" id="timeline"></div>
   </div>
 </section>
