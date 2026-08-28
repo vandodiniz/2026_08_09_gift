@@ -135,7 +135,7 @@ window.DADOS = {
       destaque: false,
     },
     {
-      data: "2024-09-12",
+      data: "2024-11-09",
       titulo: "Ratinhos do CCBB",
       texto: "Batendo ponto de novo no CCBB. Ele virou quase a nossa segunda casa, e nós, oficialmente, as figurinhas mais carimbadas das exposições de lá.",
       foto: "fotos/timeline/IMG_20241209_075637_011.jpg",
@@ -393,7 +393,7 @@ window.DADOS = {
     {
       data: "2026-03-14",
       titulo: "De Volta à ExpoJapão",
-      texto: "Batendo o ponto mais uma vez na ExpoJapão para garantir a renovação anual do nosso cobiçado título de casal mais nerdola de BH! Essa tradição já é sagrada no nosso calendário.",
+      texto: "Batendo o ponto mais uma vez na ExpoJapão para garantir a renovação anual do nosso cobiçado título de casal mais nerdola de BH! Já virou tradição nossa.",
       foto: "fotos/timeline/20260314_145431.jpg",
       emoji: "⛩️",
       destaque: false,
@@ -401,7 +401,7 @@ window.DADOS = {
     {
       data: "2026-04-10",
       titulo: "Encontro de Sogras",
-      texto: "O dia em que finalmente as nossas mães se conheceram kkkk.",
+      texto: "O dia em que finalmente as nossas mães se conheceram!",
       foto: "fotos/timeline/20260410_205558.jpg",
       emoji: "🥂",
       destaque: false,
@@ -449,7 +449,7 @@ window.DADOS = {
     {
       data: "2026-08-07",
       titulo: "Buenos Aires",
-      texto: "A viagem continuou com muito estilo na capital portenha!. A noite ideal para fechar a nossa tour pela Argentina com chave de ouro.",
+      texto: "A viagem continuou com muito estilo na capital portenha! Muita andança e tango. Fechamos o nosso tour pela Argentina com chave de ouro.",
       foto: "fotos/timeline/20260807_150941.jpg",
       emoji: "💃",
       destaque: true,
@@ -460,6 +460,14 @@ window.DADOS = {
       texto: "Porque comemorar no aeroporto foi só o aquecimento! Fizemos uma comemoração de verdade para o seu aniversário, já de volta ao solo mineiro. E claro, garantimos mais um registro para a sua famosa coleção de bolos diferentões.",
       foto: "fotos/timeline/20260815_182916.jpg",
       emoji: "🎂",
+      destaque: false,
+    },
+    {
+      data: "2026-09-08",
+      titulo: "Loading...",
+      texto: "",
+      foto: "",
+      emoji: "",
       destaque: false,
     }
   ],
