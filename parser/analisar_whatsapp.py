@@ -182,6 +182,7 @@ tem têm tinha temos tenho vai vou vamos foi fui será seria
 não sim nao ah oh eita né ne pq q vc vcs tb tbm tbem aí ai pra pro
 aqui ali lá la agora hoje ontem amanhã depois antes sempre nunca
 bem bom boa então entao assim isso essa esse isto tudo nada
+emoji emojis foto fotos msg msgs mensagem mensagens vc vcs
 """.split()
 )
 
@@ -223,7 +224,12 @@ EXPRESSOES = {
     "amor": r"\bamor\b",
     "linda / lindo": r"\blind[oa]\b",
     "casar": r"\bcasar\b|\bcasamento\b",
-    "obrigado / obrigada": r"\bobrigad[oa]\b",
+    "obrigado / obrigada": r"\bobrigad[oa]\b|\bobg[d]?[oa]?\b",
+    "desculpa": r"\bdesculpa[s]?\b|\bdesculpe\b|\bme desculpa\b|\bperdão\b|\bperdao\b|\bdsclp\b",
+    "macaco / macaquinho": r"\bmacac[oa]s?\b|\bmacaquinhos?\b",
+    "meu bem": r"\bmeu\s+bem\b",
+    "criatura": r"\bcriaturas?\b",
+    "serzinho": r"\bserzinhos?\b|\bserz\b",
 }
 
 
@@ -240,6 +246,12 @@ def analisar(mensagens: list[dict]) -> dict:
         raise SystemExit("Nenhuma mensagem reconhecida. Confira o arquivo e o formato do export.")
 
     autores = [a for a, _ in Counter(m["autor"] for m in mensagens).most_common(2)]
+
+    # Nomes dos autores não devem aparecer no contador de palavras
+    nomes_stopwords = {normalizar(p) for a in autores for p in a.split()}
+
+    # Emojis presentes nos nomes dos autores não devem aparecer no contador de emojis
+    emojis_ignorar = {e for a in autores for e in EMOJI.findall(a)}
 
     por_autor = {
         a: {
@@ -295,11 +307,13 @@ def analisar(mensagens: list[dict]) -> dict:
 
         for p in palavras:
             pn = normalizar(p)
-            if pn not in STOPWORDS and len(pn) > 2:
+            if pn not in STOPWORDS and pn not in nomes_stopwords and len(pn) > 2:
                 d["palavras_top"][p] += 1
                 palavras_geral[p] += 1
 
         for e in EMOJI.findall(texto):
+            if e in emojis_ignorar:
+                continue
             d["emojis"][e] += 1
             emojis_geral[e] += 1
 

@@ -664,8 +664,6 @@ function ranking(itens, {emoji=false, unidade=''}={}){
   const linhas = [
     ['Palavras por mensagem', p1.mediaPalavrasPorMensagem, p2.mediaPalavrasPorMensagem],
     ['Fotos e áudios enviados', num(p1.midias), num(p2.midias)],
-    ['Tempo de resposta (mediana)', p1.tempoRespostaMedianaMin!=null?p1.tempoRespostaMedianaMin+' min':'—',
-                                    p2.tempoRespostaMedianaMin!=null?p2.tempoRespostaMedianaMin+' min':'—'],
     ['Dias em que mandou a 1ª mensagem', num(p1.primeiroDoDia), num(p2.primeiroDoDia)],
   ];
   cQuem.appendChild(el('div','', `<table style="width:100%;border-collapse:collapse;margin-top:22px;font-size:14px;font-variant-numeric:tabular-nums">

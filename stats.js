@@ -1,36 +1,32 @@
 // Gerado automaticamente por parser/analisar_whatsapp.py — não edite à mão.
 window.STATS = {
-  "gerado": "2026-08-31T14:39:58",
+  "gerado": "2026-08-31T15:11:11",
   "periodo": {
     "inicio": "2024-09-08",
     "fim": "2026-07-22",
     "diasTotais": 683,
-    "diasComConversa": 670,
-    "percentualDiasFalando": 98
+    "diasComConversa": 661,
+    "percentualDiasFalando": 97
   },
   "totais": {
-    "mensagens": 188355,
-    "palavras": 668594,
-    "midias": 18239,
-    "mediaPorDia": 275.8,
-    "emojis": 2341
+    "mensagens": 170628,
+    "palavras": 683507,
+    "midias": 512,
+    "mediaPorDia": 249.8,
+    "emojis": 1803
   },
   "pessoas": [
     {
       "nome": "Vando",
-      "mensagens": 102807,
-      "palavras": 333761,
-      "caracteres": 1839871,
-      "midias": 6369,
-      "mediaPalavrasPorMensagem": 3.2,
+      "mensagens": 96559,
+      "palavras": 340107,
+      "caracteres": 2037405,
+      "midias": 121,
+      "mediaPalavrasPorMensagem": 3.5,
       "emojisTop": [
         {
           "emoji": "🤨",
           "n": 163
-        },
-        {
-          "emoji": "🐧",
-          "n": 153
         },
         {
           "emoji": "🫠",
@@ -55,6 +51,10 @@ window.STATS = {
         {
           "emoji": "😎",
           "n": 24
+        },
+        {
+          "emoji": "🥰",
+          "n": 21
         }
       ],
       "palavrasTop": [
@@ -120,20 +120,16 @@ window.STATS = {
         }
       ],
       "tempoRespostaMedianaMin": 0.0,
-      "primeiroDoDia": 268
+      "primeiroDoDia": 269
     },
     {
       "nome": "Marianjo 🐧",
-      "mensagens": 85548,
-      "palavras": 334833,
-      "caracteres": 1953159,
-      "midias": 11870,
-      "mediaPalavrasPorMensagem": 3.9,
+      "mensagens": 74069,
+      "palavras": 343400,
+      "caracteres": 2244054,
+      "midias": 391,
+      "mediaPalavrasPorMensagem": 4.6,
       "emojisTop": [
-        {
-          "emoji": "🐧",
-          "n": 385
-        },
         {
           "emoji": "🤨",
           "n": 211
@@ -161,6 +157,10 @@ window.STATS = {
         {
           "emoji": "❤️",
           "n": 40
+        },
+        {
+          "emoji": "🚫",
+          "n": 29
         }
       ],
       "palavrasTop": [
@@ -181,16 +181,8 @@ window.STATS = {
           "n": 1088
         },
         {
-          "palavra": "mensagem",
-          "n": 1001
-        },
-        {
           "palavra": "gente",
           "n": 941
-        },
-        {
-          "palavra": "editada",
-          "n": 932
         },
         {
           "palavra": "qria",
@@ -223,269 +215,273 @@ window.STATS = {
         {
           "palavra": "noite",
           "n": 721
+        },
+        {
+          "palavra": "casa",
+          "n": 715
+        },
+        {
+          "palavra": "ficar",
+          "n": 699
         }
       ],
       "tempoRespostaMedianaMin": 0.0,
-      "primeiroDoDia": 402
+      "primeiroDoDia": 392
     }
   ],
   "serieMensal": [
     {
       "chave": "2024-09",
       "rotulo": "set/24",
-      "total": 6463
+      "total": 5847
     },
     {
       "chave": "2024-10",
       "rotulo": "out/24",
-      "total": 10423
+      "total": 9270
     },
     {
       "chave": "2024-11",
       "rotulo": "nov/24",
-      "total": 11161
+      "total": 10276
     },
     {
       "chave": "2024-12",
       "rotulo": "dez/24",
-      "total": 7808
+      "total": 7072
     },
     {
       "chave": "2025-01",
       "rotulo": "jan/25",
-      "total": 9265
+      "total": 8588
     },
     {
       "chave": "2025-02",
       "rotulo": "fev/25",
-      "total": 6290
+      "total": 5248
     },
     {
       "chave": "2025-03",
       "rotulo": "mar/25",
-      "total": 12084
+      "total": 10968
     },
     {
       "chave": "2025-04",
       "rotulo": "abr/25",
-      "total": 9078
+      "total": 8256
     },
     {
       "chave": "2025-05",
       "rotulo": "mai/25",
-      "total": 10334
+      "total": 9474
     },
     {
       "chave": "2025-06",
       "rotulo": "jun/25",
-      "total": 9391
+      "total": 8548
     },
     {
       "chave": "2025-07",
       "rotulo": "jul/25",
-      "total": 7495
+      "total": 6858
     },
     {
       "chave": "2025-08",
       "rotulo": "ago/25",
-      "total": 7924
+      "total": 7366
     },
     {
       "chave": "2025-09",
       "rotulo": "set/25",
-      "total": 10871
+      "total": 10067
     },
     {
       "chave": "2025-10",
       "rotulo": "out/25",
-      "total": 11534
+      "total": 10630
     },
     {
       "chave": "2025-11",
       "rotulo": "nov/25",
-      "total": 9240
+      "total": 8170
     },
     {
       "chave": "2025-12",
       "rotulo": "dez/25",
-      "total": 8414
+      "total": 7518
     },
     {
       "chave": "2026-01",
       "rotulo": "jan/26",
-      "total": 6498
+      "total": 5878
     },
     {
       "chave": "2026-02",
       "rotulo": "fev/26",
-      "total": 4263
+      "total": 3716
     },
     {
       "chave": "2026-03",
       "rotulo": "mar/26",
-      "total": 7324
+      "total": 6747
     },
     {
       "chave": "2026-04",
       "rotulo": "abr/26",
-      "total": 6613
+      "total": 5800
     },
     {
       "chave": "2026-05",
       "rotulo": "mai/26",
-      "total": 5155
+      "total": 4627
     },
     {
       "chave": "2026-06",
       "rotulo": "jun/26",
-      "total": 5206
+      "total": 4684
     },
     {
       "chave": "2026-07",
       "rotulo": "jul/26",
-      "total": 5521
+      "total": 5020
     }
   ],
   "porHora": [
     {
       "hora": 0,
-      "total": 1640
+      "total": 1485
     },
     {
       "hora": 1,
-      "total": 183
+      "total": 130
     },
     {
       "hora": 2,
-      "total": 84
+      "total": 81
     },
     {
       "hora": 3,
-      "total": 55
+      "total": 54
     },
     {
       "hora": 4,
-      "total": 25
+      "total": 23
     },
     {
       "hora": 5,
-      "total": 389
+      "total": 378
     },
     {
       "hora": 6,
-      "total": 2422
+      "total": 2201
     },
     {
       "hora": 7,
-      "total": 6845
+      "total": 6306
     },
     {
       "hora": 8,
-      "total": 7585
+      "total": 6728
     },
     {
       "hora": 9,
-      "total": 6048
+      "total": 5339
     },
     {
       "hora": 10,
-      "total": 6919
+      "total": 6195
     },
     {
       "hora": 11,
-      "total": 7241
+      "total": 6437
     },
     {
       "hora": 12,
-      "total": 11020
+      "total": 9995
     },
     {
       "hora": 13,
-      "total": 7586
+      "total": 6865
     },
     {
       "hora": 14,
-      "total": 5066
+      "total": 4498
     },
     {
       "hora": 15,
-      "total": 6080
+      "total": 5229
     },
     {
       "hora": 16,
-      "total": 7222
+      "total": 6395
     },
     {
       "hora": 17,
-      "total": 10077
+      "total": 9008
     },
     {
       "hora": 18,
-      "total": 11641
+      "total": 10249
     },
     {
       "hora": 19,
-      "total": 10718
+      "total": 9515
     },
     {
       "hora": 20,
-      "total": 11059
+      "total": 9793
     },
     {
       "hora": 21,
-      "total": 15361
+      "total": 14224
     },
     {
       "hora": 22,
-      "total": 36221
+      "total": 33879
     },
     {
       "hora": 23,
-      "total": 16868
+      "total": 15621
     }
   ],
   "porDiaSemana": [
     {
       "dia": "Segunda",
-      "total": 35821
+      "total": 32760
     },
     {
       "dia": "Terça",
-      "total": 40722
+      "total": 37563
     },
     {
       "dia": "Quarta",
-      "total": 36253
+      "total": 33197
     },
     {
       "dia": "Quinta",
-      "total": 33530
+      "total": 30519
     },
     {
       "dia": "Sexta",
-      "total": 21324
+      "total": 19227
     },
     {
       "dia": "Sábado",
-      "total": 9677
+      "total": 8012
     },
     {
       "dia": "Domingo",
-      "total": 11028
+      "total": 9350
     }
   ],
   "recordes": {
     "diaRecorde": "2025-02-11",
-    "mensagensNoDiaRecorde": 1220,
-    "maiorSequenciaDias": 186,
-    "sequenciaInicio": "2025-03-03",
-    "sequenciaFim": "2025-09-04"
+    "mensagensNoDiaRecorde": 1138,
+    "maiorSequenciaDias": 102,
+    "sequenciaInicio": "2025-03-04",
+    "sequenciaFim": "2025-06-13"
   },
   "emojisTop": [
-    {
-      "emoji": "🐧",
-      "n": 538
-    },
     {
       "emoji": "🤨",
       "n": 374
@@ -521,6 +517,10 @@ window.STATS = {
     {
       "emoji": "✅",
       "n": 51
+    },
+    {
+      "emoji": "😎",
+      "n": 50
     }
   ],
   "palavrasTop": [
@@ -553,10 +553,6 @@ window.STATS = {
       "n": 1473
     },
     {
-      "palavra": "mensagem",
-      "n": 1465
-    },
-    {
       "palavra": "coisa",
       "n": 1435
     },
@@ -583,10 +579,6 @@ window.STATS = {
     {
       "palavra": "quero",
       "n": 1331
-    },
-    {
-      "palavra": "editada",
-      "n": 1328
     },
     {
       "palavra": "noite",
@@ -643,6 +635,14 @@ window.STATS = {
     {
       "palavra": "mal",
       "n": 898
+    },
+    {
+      "palavra": "kkkkk",
+      "n": 895
+    },
+    {
+      "palavra": "aula",
+      "n": 878
     }
   ],
   "expressoes": [
@@ -671,6 +671,22 @@ window.STATS = {
       "total": 703
     },
     {
+      "expressao": "meu bem",
+      "porPessoa": {
+        "Vando": 665,
+        "Marianjo 🐧": 8
+      },
+      "total": 673
+    },
+    {
+      "expressao": "desculpa",
+      "porPessoa": {
+        "Vando": 357,
+        "Marianjo 🐧": 238
+      },
+      "total": 595
+    },
+    {
       "expressao": "bom dia",
       "porPessoa": {
         "Vando": 221,
@@ -687,20 +703,20 @@ window.STATS = {
       "total": 391
     },
     {
+      "expressao": "obrigado / obrigada",
+      "porPessoa": {
+        "Vando": 257,
+        "Marianjo 🐧": 26
+      },
+      "total": 283
+    },
+    {
       "expressao": "eu te amo",
       "porPessoa": {
         "Vando": 85,
         "Marianjo 🐧": 96
       },
       "total": 181
-    },
-    {
-      "expressao": "obrigado / obrigada",
-      "porPessoa": {
-        "Vando": 127,
-        "Marianjo 🐧": 19
-      },
-      "total": 146
     },
     {
       "expressao": "amor",
@@ -725,6 +741,22 @@ window.STATS = {
         "Marianjo 🐧": 17
       },
       "total": 51
+    },
+    {
+      "expressao": "macaco / macaquinho",
+      "porPessoa": {
+        "Vando": 16,
+        "Marianjo 🐧": 24
+      },
+      "total": 40
+    },
+    {
+      "expressao": "serzinho",
+      "porPessoa": {
+        "Vando": 1,
+        "Marianjo 🐧": 0
+      },
+      "total": 1
     }
   ]
 };
