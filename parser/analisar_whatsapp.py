@@ -423,11 +423,16 @@ def analisar(mensagens: list[dict]) -> dict:
 
 
 def main() -> None:
+    _dir = Path(__file__).resolve().parent
     ap = argparse.ArgumentParser(description="Gera as estatísticas da conversa para o site.")
-    ap.add_argument("arquivo", type=Path, help="conversa exportada do WhatsApp (.txt)")
-    ap.add_argument("--inicio", help="considerar só a partir desta data (AAAA-MM-DD)")
+    ap.add_argument(
+        "arquivo", nargs="?",
+        type=Path, default=_dir / "conversa.txt",
+        help="conversa exportada do WhatsApp (.txt) — padrão: parser/conversa.txt",
+    )
+    ap.add_argument("--inicio", default="2024-09-08", help="considerar só a partir desta data (AAAA-MM-DD)")
     ap.add_argument("--fim", help="considerar só até esta data (AAAA-MM-DD)")
-    ap.add_argument("--saida", type=Path, default=Path(__file__).resolve().parent.parent / "stats.js")
+    ap.add_argument("--saida", type=Path, default=_dir.parent / "stats.js")
     args = ap.parse_args()
 
     if not args.arquivo.exists():

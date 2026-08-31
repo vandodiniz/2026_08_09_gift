@@ -390,16 +390,27 @@ function diasEntre(isoA, isoB){
   }
 
   if(c.dataInicio){
-    const dias  = Math.max(0, diasEntre(c.dataInicio));
-    const anos  = Math.floor(dias/365.25);
-    const meses = anos*12 + Math.floor((dias - anos*365.25)/30.44);
-    const partes = [
-      [anos,  anos===1?'ano':'anos'],
-      [meses, meses===1?'mês':'meses'],
-      [num(dias), 'dias'],
-      [num(dias*24), 'horas'],
-    ];
-    $('#contador').innerHTML = partes.map(([v,l])=>`<div><b>${v}</b><span>${l}</span></div>`).join('');
+    function atualizarContador(){
+      const inicio = new Date(c.dataInicio+'T00:00:00');
+      const agora  = new Date();
+      let anos  = agora.getFullYear() - inicio.getFullYear();
+      let meses = agora.getMonth()    - inicio.getMonth();
+      let dias  = agora.getDate()     - inicio.getDate();
+      if(dias  < 0){ meses--; dias  += new Date(agora.getFullYear(), agora.getMonth(), 0).getDate(); }
+      if(meses < 0){ anos--;  meses += 12; }
+      const pad = n => String(n).padStart(2,'0');
+      const partes = [
+        [anos,                  anos===1?'ano':'anos'],
+        [meses,                 meses===1?'mês':'meses'],
+        [dias,                  dias===1?'dia':'dias'],
+        [pad(agora.getHours()),    'horas'],
+        [pad(agora.getMinutes()),  'minutos'],
+        [pad(agora.getSeconds()),  'segundos'],
+      ];
+      $('#contador').innerHTML = partes.map(([v,l])=>`<div><b>${v}</b><span>${l}</span></div>`).join('');
+    }
+    atualizarContador();
+    setInterval(atualizarContador, 1000);
   }
 })();
 
