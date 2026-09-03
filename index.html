@@ -303,8 +303,8 @@ details.tabela th{color:var(--ink-3); font-size:11px; text-transform:uppercase; 
 <section id="fotos" hidden>
   <div class="wrap">
     <p class="eyebrow reveal">Fotos</p>
-    <h2 class="section-title reveal">Minhas fotos favoritas de você!</h2>
-    <p class="section-sub reveal">... que talvez você não goste tanto kkk.</p>
+    <h2 class="section-title reveal">Minhas fotos favoritas suas!</h2>
+    <p class="section-sub reveal">... que talvez você não goste tanto kkk</p>
     <div class="galeria reveal" id="galeria"></div>
   </div>
 </section>
@@ -339,8 +339,6 @@ details.tabela th{color:var(--ink-3); font-size:11px; text-transform:uppercase; 
     <div class="musica reveal" id="musica"></div>
   </div>
 </section>
-
-<p class="rodape">feito à mão, com <span class="coracao">❤</span></p>
 
 <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Foto ampliada">
   <button type="button" aria-label="Fechar">&times;</button>
@@ -629,6 +627,14 @@ function ranking(itens, {emoji=false, unidade=''}={}){
   }
 
   const p = S.periodo, t = S.totais, pes = S.pessoas, rec = S.recordes;
+
+  // Mapeia nomes do WhatsApp para nomes de exibição
+  const NOMES_DISPLAY = { "Vando": "Vando", "Marianjo": "Mariana" };
+  pes.forEach(pessoa => {
+    const base = pessoa.nome.replace(/[^\w\s]/gu, '').trim().split(' ')[0];
+    if (NOMES_DISPLAY[base]) pessoa.nome = NOMES_DISPLAY[base];
+  });
+
   const [p1, p2] = pes;
 
   // --- número herói + KPIs -------------------------------------------------
@@ -766,7 +772,7 @@ function ranking(itens, {emoji=false, unidade=''}={}){
 
 /* ===========================================================================
    MENSAGENS MARCANTES
-   =========================================================================== */
+   =========================================================================== 
 (function marcantes(){
   const itens = D.mensagensMarcantes||[];
   if(!itens.length) return;
@@ -779,6 +785,7 @@ function ranking(itens, {emoji=false, unidade=''}={}){
     alvo.appendChild(b);
   });
 })();
+*/
 
 /* ===========================================================================
    CARTA E MÚSICA

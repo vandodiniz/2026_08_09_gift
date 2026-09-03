@@ -377,7 +377,7 @@ window.DADOS = {
     {
       data: "2026-02-14",
       titulo: "Pagando a Aposta",
-      texto: "Promessa é dívida! Tive que te levar ao Topo do Mundo depois de perder aquela aposta sobre quem interpretava o personagem do filme. Mas convenhamos, nada melhor do que pagar essa dívida no Dia de São Valentim, né? Pelo menos ganhei alguns Vales tem troca hehehe",
+      texto: "Promessa é dívida! Tive que te levar ao Topo do Mundo depois de perder aquela aposta sobre quem interpretava o personagem do filme. Mas convenhamos, nada melhor do que pagar essa dívida no Dia de São Valentim, né? Pelo menos ganhei alguns Vales em troca hehehe",
       foto: "fotos/timeline/20260214_142841.jpg",
       emoji: "🌇", 
       destaque: true,
@@ -457,7 +457,7 @@ window.DADOS = {
     {
       data: "2026-08-15",
       titulo: "Aniversário 2.0",
-      texto: "Porque comemorar no aeroporto foi só o aquecimento! Fizemos uma comemoração de verdade para o seu aniversário, já de volta ao solo mineiro. E claro, garantimos mais um registro para a sua famosa coleção de bolos diferentões.",
+      texto: "Comemorar no aeroporto foi só o aquecimento! Fizemos uma comemoração de verdade para o seu aniversário, já de volta em solo mineiro. E claro, garantimos mais um registro para a sua famosa coleção de bolos diferentões.",
       foto: "fotos/timeline/20260815_182916.jpg",
       emoji: "🎂",
       destaque: false,
@@ -475,8 +475,6 @@ window.DADOS = {
   // ---------------------------------------------------------------------------
   // GALERIA DE FOTOS
   // ---------------------------------------------------------------------------
-  // Coloque os arquivos dentro da pasta "fotos/timeline/" e liste aqui.
-  // A legenda aparece quando a foto é aberta.
   // ---------------------------------------------------------------------------
   // As fotos abaixo são EXEMPLOS coloridos, só para você ver o site cheio.
   // Troque os arquivos da pasta fotos/timeline/ pelos seus e ajuste as legendas.
@@ -508,35 +506,6 @@ window.DADOS = {
   ],
 
   // ---------------------------------------------------------------------------
-  // MENSAGENS QUE VALEM SER LIDAS DE NOVO
-  // ---------------------------------------------------------------------------
-  // As estatísticas o script gera sozinho. Aqui vão as mensagens que você
-  // escolheu a dedo — é a parte que emociona de verdade.
-  // "de" pode ser "ele" ou "ela".
-  // ---------------------------------------------------------------------------
-  mensagensMarcantes: [
-    // Estes são EXEMPLOS. Apague e cole as mensagens de verdade.
-    {
-      data: "2024-08-20",
-      de: "ele",
-      texto: "oi, tudo bem? desculpa a cara de pau, mas eu precisava te falar uma coisa",
-      contexto: "a primeira mensagem",
-    },
-    {
-      data: "2024-09-08",
-      de: "ela",
-      texto: "eu tô sorrindo sozinha aqui, você não faz ideia",
-      contexto: "logo depois do pedido",
-    },
-    {
-      data: "2025-09-08",
-      de: "ele",
-      texto: "um ano. e eu escolheria tudo de novo, na mesma ordem",
-      contexto: "no nosso primeiro aniversário",
-    },
-  ],
-
-  // ---------------------------------------------------------------------------
   // CARTA FINAL
   // ---------------------------------------------------------------------------
   // Separe os parágrafos em itens da lista.
@@ -548,7 +517,7 @@ window.DADOS = {
       "Dois anos cabem em números, em fotos e em mensagens. Mas o que eles " +
       "significam não cabe em nenhum dos três.",
     ],
-    assinatura: "Com amor, Vando",
+    assinatura: "Com amor, seu Macaquinho",
   },
 
   // ---------------------------------------------------------------------------
@@ -558,7 +527,7 @@ window.DADOS = {
   // Como pegar: no Spotify → Compartilhar → Copiar link.
   // ---------------------------------------------------------------------------
   musica: {
-    spotify: "",
+    spotify: "https://open.spotify.com/intl-pt/album/6laUDBtyfu4ngRbOsblhfS",
     legenda: "A trilha sonora desses dois anos",
   },
 };
