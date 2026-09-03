@@ -513,9 +513,7 @@ window.DADOS = {
   carta: {
     titulo: "O que eu queria te dizer",
     paragrafos: [
-      "Escreva aqui. Sem pressa, sem tentar ficar bonito — só verdadeiro.",
-      "Dois anos cabem em números, em fotos e em mensagens. Mas o que eles " +
-      "significam não cabe em nenhum dos três.",
+      "Oi",
     ],
     assinatura: "Com amor, seu Macaquinho",
   },
