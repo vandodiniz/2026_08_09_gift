@@ -5,6 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nossa história</title>
 <meta name="description" content="Dois anos de Marivando.">
+<script>
+/* Aplica o tema salvo ANTES da página pintar — sem isso, quem escolheu um tema
+   diferente do sistema veria um flash do tema errado a cada carregamento. */
+(function(){
+  var pref = 'auto';
+  try{ pref = localStorage.getItem('tema') || 'auto'; }catch(e){}
+  if(pref !== 'light' && pref !== 'dark') pref = 'auto';
+  var escuro = pref === 'dark' || (pref === 'auto' &&
+    window.matchMedia && window.matchMedia('(prefers-color-scheme:dark)').matches);
+  document.documentElement.setAttribute('data-theme', escuro ? 'dark' : 'light');
+})();
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -14,26 +26,69 @@
    Paleta: #55A6BF · #3E757C · #ECB606 · #BC0737 · #EBE1B9
    =========================================================================== */
 :root{
-  --surface:#FAF9F3; --surface-2:#F4EDD8; --surface-3:#EBE1B9;
+  /* --- paleta base --- */
+  --p-azul:#55A6BF; --p-teal:#3E757C; --p-ouro:#ECB606;
+  --p-carmim:#BC0737; --p-creme:#EBE1B9;
+
+  /* --- superfícies e texto (derivados do creme) --- */
+  --surface:#FAF9F3; --surface-2:#F4EDD8; --surface-3:var(--p-creme);
   --ink:#1A1A10; --ink-2:#5C5435; --ink-3:#9A8E62;
   --line:#D8CEAD;
-  --serie-1:#BC0737; --serie-2:#3E757C;
-  --seq-1:#FCE8EE; --seq-2:#F5BFCC; --seq-3:#E888A0; --seq-4:#D34870; --seq-5:#BC0737;
+
+  /* --- séries --- */
+  --serie-1:var(--p-carmim); --serie-2:var(--p-teal);
+  --serie-3:var(--p-ouro);   --serie-4:var(--p-azul);
+
+  /* --- escala sequencial (creme → carmim) --- */
+  --seq-1:#FCE8EE; --seq-2:#F5BFCC; --seq-3:#E888A0; --seq-4:#D34870; --seq-5:var(--p-carmim);
+
   --grid:#E5DAB8; --shadow:0 1px 2px rgba(26,26,16,.05),0 8px 28px rgba(26,26,16,.08);
+  /* véu que clareia a foto de capa */
+  --veu-1:rgba(250,249,243,.72); --veu-2:rgba(250,249,243,.92);
+
+  /* fundos das seções */
+  --sec-historia:var(--surface);  --sec-fotos:var(--surface);
+  --sec-retro:var(--surface-2);   --sec-carta:var(--surface-2);
   --radius:14px; --maxw:1080px;
   --serif:"Fraunces",Georgia,"Times New Roman",serif;
   --sans:"Inter",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
 }
-@media (prefers-color-scheme:dark){
-  :root{
-    --surface:#0C1214; --surface-2:#131C1F; --surface-3:#1C2A2D;
-    --ink:#F0E8D5; --ink-2:#B5A882; --ink-3:#857860;
-    --line:#283338;
-    --serie-1:#E82850; --serie-2:#55A6BF;
-    --seq-1:#2A1018; --seq-2:#4A1828; --seq-3:#7A2038; --seq-4:#AB2848; --seq-5:#E82850;
-    --grid:#1E2D30; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.35);
-  }
+/* --- TEMA ESCURO ---------------------------------------------------------
+   Bloco único: o JS resolve a preferência ("automático" consulta o sistema) e
+   grava data-theme="light|dark" na raiz. Sem @media aqui, não há dois conjuntos
+   de valores para manter em sincronia.
+   Superfícies em teal escurecido, derivadas de #3E757C.                       */
+:root[data-theme="dark"]{
+  --surface:#0E2428; --surface-2:#122C31; --surface-3:#17363C;
+  --ink:#F0E8D5; --ink-2:#B5A882; --ink-3:#857860;
+  --line:#24454A;
+
+  /* carmim clareado: BC0737 puro não tem contraste sobre fundo escuro */
+  --serie-1:#E82850;         --serie-2:var(--p-azul);
+  --serie-3:var(--p-ouro);   --serie-4:var(--p-teal);
+
+  --seq-1:#2A1018; --seq-2:#4A1828; --seq-3:#7A2038; --seq-4:#AB2848; --seq-5:#E82850;
+  --grid:#1B3A40; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 28px rgba(0,0,0,.35);
+  --veu-1:rgba(18,52,58,.85); --veu-2:rgba(14,38,42,.9);
+
+  /* seções alternam entre os dois tons mais escuros — diferença de ~4/255 por
+     canal, o suficiente para separar sem virar listra */
+  --sec-historia:var(--surface-2); --sec-fotos:var(--surface);
+  --sec-retro:var(--surface-2);    --sec-carta:var(--surface);
 }
+
+/* --- botão de tema --- */
+.tema-btn{
+  position:fixed; top:16px; right:16px; z-index:90;
+  width:38px; height:38px; border-radius:50%;
+  background:var(--surface-2); border:1px solid var(--line); color:var(--ink-2);
+  font-size:16px; line-height:1; cursor:pointer; display:grid; place-items:center;
+  box-shadow:var(--shadow);
+  transition:color .2s ease,border-color .2s ease,transform .2s ease;
+}
+.tema-btn:hover{color:var(--serie-1); border-color:var(--serie-1); transform:scale(1.07)}
+.tema-btn:focus-visible{outline:2px solid var(--serie-4); outline-offset:3px}
+@media (prefers-reduced-motion:reduce){.tema-btn{transition:none}}
 
 /* =========================================================================== */
 *,*::before,*::after{box-sizing:border-box}
@@ -73,10 +128,7 @@ section{padding:clamp(64px,10vw,120px) 24px}
 .capa-bg img{width:100%; height:100%; object-fit:cover; filter:saturate(.9)}
 .capa-bg::after{
   content:""; position:absolute; inset:0;
-  background:radial-gradient(ellipse at center,rgba(250,249,243,.72) 0%,rgba(250,249,243,.92) 65%,var(--surface) 100%);
-}
-@media (prefers-color-scheme:dark){
-  .capa-bg::after{background:radial-gradient(ellipse at center,rgba(12,18,20,.62) 0%,rgba(12,18,20,.9) 65%,var(--surface) 100%)}
+  background:radial-gradient(ellipse at center,var(--veu-1) 0%,var(--veu-2) 65%,var(--surface) 100%);
 }
 .capa-inner{position:relative; z-index:1; max-width:680px}
 .nomes{
@@ -101,7 +153,7 @@ section{padding:clamp(64px,10vw,120px) 24px}
   font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-3);
   text-decoration:none; display:grid; gap:8px; justify-items:center;
 }
-.scroll-cue::after{content:""; width:1px; height:34px; background:linear-gradient(var(--ink-3),transparent); animation:cue 2.2s ease-in-out infinite}
+.scroll-cue::after{content:""; width:1px; height:34px; background:linear-gradient(var(--serie-4),transparent); animation:cue 2.2s ease-in-out infinite}
 @keyframes cue{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
 
 /* ===========================================================================
@@ -118,7 +170,7 @@ section{padding:clamp(64px,10vw,120px) 24px}
   background:var(--surface); border:2px solid var(--line);
   display:grid; place-items:center; font-size:12px; line-height:1;
 }
-.tl-item.destaque .tl-dot{border-color:var(--serie-1); box-shadow:0 0 0 5px color-mix(in srgb,var(--serie-1) 14%,transparent)}
+.tl-item.destaque .tl-dot{border-color:var(--serie-3); box-shadow:0 0 0 5px color-mix(in srgb,var(--serie-3) 26%,transparent)}
 .tl-data{font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--serie-1); font-weight:600}
 .tl-item h3{font-size:clamp(21px,3vw,27px); margin:6px 0 10px}
 .tl-item p{margin:0; color:var(--ink-2)}
@@ -130,8 +182,8 @@ section{padding:clamp(64px,10vw,120px) 24px}
 .tl-foto:hover img{transform:scale(1.03)}
 .selo{
   display:inline-block; margin-left:8px; font-size:10px; letter-spacing:.12em;
-  text-transform:uppercase; font-weight:600; color:var(--serie-1); vertical-align:middle;
-  background:color-mix(in srgb,var(--serie-1) 10%,transparent); padding:3px 8px; border-radius:20px;
+  text-transform:uppercase; font-weight:600; color:#1A1A10; vertical-align:middle;
+  background:var(--serie-3); padding:3px 8px; border-radius:20px;
 }
 @media(min-width:820px){
   .timeline::before{left:50%; transform:translateX(-50%)}
@@ -164,16 +216,18 @@ section{padding:clamp(64px,10vw,120px) 24px}
 }
 .lightbox.on{display:grid}
 .lightbox img{max-width:min(1000px,92vw); max-height:82vh; object-fit:contain; border-radius:8px}
-.lightbox p{color:#f4e7e4; text-align:center; margin:16px 0 0; font-size:14px}
+.lightbox p{color:var(--p-creme); text-align:center; margin:16px 0 0; font-size:14px}
 .lightbox button{
-  position:absolute; top:18px; right:20px; background:none; border:0; color:#f4e7e4;
+  position:absolute; top:18px; right:20px; background:none; border:0; color:var(--p-creme);
   font-size:30px; cursor:pointer; line-height:1; padding:6px 12px;
 }
 
 /* ===========================================================================
    RETROSPECTIVA
    =========================================================================== */
-.retro{background:var(--surface-2); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
+#historia{background:var(--sec-historia)}
+#fotos{background:var(--sec-fotos)}
+.retro{background:var(--sec-retro); border-top:1px solid var(--line); border-bottom:1px solid var(--line)}
 .kpis{display:grid; grid-template-columns:repeat(auto-fit,minmax(160px,1fr)); gap:14px; margin-bottom:44px}
 .kpi{
   background:var(--surface); border:1px solid var(--line); border-radius:var(--radius);
@@ -252,8 +306,12 @@ details.tabela th{color:var(--ink-3); font-size:11px; text-transform:uppercase; 
 /* ===========================================================================
    CARTA
    =========================================================================== */
-.carta{background:var(--surface-2); border-top:1px solid var(--line)}
+.carta{background:var(--sec-carta); border-top:1px solid var(--line)}
 .carta-inner{max-width:640px; margin:0 auto; text-align:center}
+/* Corpo da carta à esquerda — texto corrido centralizado faz o olho perder a
+   linha a cada quebra. Saudação e assinatura seguem centralizadas. */
+#cartaTexto{text-align:left}
+#cartaTexto p:first-child{text-align:center}
 .carta p{font-family:var(--serif); font-size:clamp(19px,2.7vw,23px); line-height:1.75; color:var(--ink); margin:0 0 26px}
 .assinatura{font-family:var(--serif); font-style:italic; font-size:19px; color:var(--serie-1); margin-top:36px}
 .musica{margin-top:28px}
@@ -265,6 +323,8 @@ details.tabela th{color:var(--ink-3); font-size:11px; text-transform:uppercase; 
 </style>
 </head>
 <body>
+
+<button class="tema-btn" id="temaBtn" type="button"></button>
 
 <!-- ======================= CAPA ======================= -->
 <header class="capa" id="topo">
@@ -349,6 +409,41 @@ function diasEntre(isoA, isoB){
   const a = new Date(isoA+'T00:00:00'), b = isoB ? new Date(isoB+'T00:00:00') : new Date();
   return Math.floor((b-a)/86400000);
 }
+
+/* ===========================================================================
+   TEMA (claro / escuro / automático)
+   =========================================================================== */
+(function tema(){
+  const raiz = document.documentElement, btn = $('#temaBtn');
+  const CICLO  = ['auto','light','dark'];
+  const ICONE  = {auto:'◐',                light:'☀',           dark:'☾'};
+  const ROTULO = {auto:'Tema: automático', light:'Tema: claro', dark:'Tema: escuro'};
+
+  const sistemaEscuro = window.matchMedia('(prefers-color-scheme:dark)');
+
+  // "pref" é o que a pessoa escolheu (pode ser automático); data-theme guarda o
+  // tema já resolvido, por isso não dá para ler a preferência de volta da raiz.
+  let pref = 'auto';
+  try{ pref = localStorage.getItem('tema') || 'auto'; }catch(e){}
+  if(!CICLO.includes(pref)) pref = 'auto';
+
+  function aplicar(){
+    const escuro = pref === 'dark' || (pref === 'auto' && sistemaEscuro.matches);
+    raiz.setAttribute('data-theme', escuro ? 'dark' : 'light');
+    btn.textContent = ICONE[pref];
+    btn.title = ROTULO[pref];
+    btn.setAttribute('aria-label', ROTULO[pref]);
+    try{ localStorage.setItem('tema', pref); }catch(e){}
+  }
+
+  btn.addEventListener('click', ()=>{
+    pref = CICLO[(CICLO.indexOf(pref) + 1) % CICLO.length];
+    aplicar();
+  });
+  // em "automático", acompanha a troca de tema do sistema sem precisar recarregar
+  sistemaEscuro.addEventListener('change', ()=>{ if(pref === 'auto') aplicar(); });
+  aplicar();
+})();
 
 /* ===========================================================================
    CAPA

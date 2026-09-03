@@ -513,7 +513,31 @@ window.DADOS = {
   carta: {
     titulo: "O que eu queria te dizer",
     paragrafos: [
-      "Oi",
+      "Meu bem,",
+
+      "Hoje completamos dois anos juntos e olhando para trás só consigo pensar " +
+      "no quanto esse tempo foi importante. Mesmo com as nossas eventuais brigas, " +
+      "tudo o que vivemos e construímos foi muito bom, e a verdade é que eu " +
+      "simplesmente não consigo mais me imaginar sem você na minha vida.",
+
+      "Você é uma pessoa incrível. Eu sou completamente apaixonado por cada " +
+      "detalhe seu. Seu sorriso, o seu cabelinho, a sua boca, a sua carinha de " +
+      "brava e até esse seu jeito duvidoso que me ganha todos os dias. Amo " +
+      "dividir o tempo com você, seja jogando, caçando Pokémon por aí, dançando, " +
+      "jogando, conversando ou até mesmo quando a gente fica quietinho, um do " +
+      "lado do outro, sem fazer absolutamente nada. Adoro o cuidado e o carinho " +
+      "que você tem por mim, especialmente nos seus presentes artesanais que eu " +
+      "guardo com tanto amor no meu altar, ou então quando você me apoia nos momentos " +
+      "mais conturbados. Adoro sentar e ouvir você me contando cada detalhezinho " +
+      "do seu dia. E não tem nada que me faça sorrir mais rápido do que ver uma " +
+      "notificação de mensagem sua no meu celular, principalmente quando abro e " +
+      "é uma foto sua.",
+
+      "Eu quero que você saiba que te acho uma mulher muito foda e que tenho um " +
+      "orgulho imenso de ser o seu namorado. Você me ensinou muito coisa nesses " +
+      "dois anos e me ajudou a me formar como homem. Tudo fica melhor quando " +
+      "estou com você. Enfim, obrigado por ser exatamente quem você é. Que esses " +
+      "dois anos sejam apenas o começo de dezenas de anos juntos. Eu te amo!",
     ],
     assinatura: "Com amor, seu Macaquinho",
   },
