@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nossa história</title>
-<meta name="description" content="Dois anos de nós.">
+<meta name="description" content="Dois anos de Marivando.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -250,24 +250,13 @@ details.tabela th{color:var(--ink-3); font-size:11px; text-transform:uppercase; 
 .aviso code{background:var(--surface); padding:2px 6px; border-radius:5px; font-size:13px; color:var(--ink)}
 
 /* ===========================================================================
-   MENSAGENS MARCANTES
-   =========================================================================== */
-.chat{max-width:600px; margin:0 auto; display:grid; gap:22px}
-.balao{max-width:82%; padding:14px 18px; border-radius:20px; position:relative; box-shadow:var(--shadow)}
-.balao p{margin:0; font-size:16px}
-.balao .meta{display:block; font-size:11px; letter-spacing:.08em; text-transform:uppercase; margin-top:9px; opacity:.72}
-.balao.ela{background:var(--surface-3); border-bottom-left-radius:5px; justify-self:start}
-.balao.ele{background:var(--serie-1); color:#fff; border-bottom-right-radius:5px; justify-self:end}
-.balao.ele .meta{color:rgba(255,255,255,.85)}
-
-/* ===========================================================================
    CARTA
    =========================================================================== */
 .carta{background:var(--surface-2); border-top:1px solid var(--line)}
 .carta-inner{max-width:640px; margin:0 auto; text-align:center}
 .carta p{font-family:var(--serif); font-size:clamp(19px,2.7vw,23px); line-height:1.75; color:var(--ink); margin:0 0 26px}
 .assinatura{font-family:var(--serif); font-style:italic; font-size:19px; color:var(--serie-1); margin-top:36px}
-.musica{margin-top:48px}
+.musica{margin-top:28px}
 .musica iframe{border-radius:12px; width:100%; max-width:520px; border:0}
 .rodape{text-align:center; padding:44px 24px 60px; color:var(--ink-3); font-size:13px}
 .coracao{color:var(--serie-1); display:inline-block; animation:bate 2.4s ease-in-out infinite}
@@ -285,6 +274,7 @@ details.tabela th{color:var(--ink-3); font-size:11px; text-transform:uppercase; 
     <h1 id="capaTitulo"></h1>
     <p class="capa-frase" id="capaFrase"></p>
     <div class="contador" id="contador"></div>
+    <div class="musica reveal" id="musica"></div>
   </div>
   <a class="scroll-cue" href="#historia">o começo</a>
 </header>
@@ -319,16 +309,6 @@ details.tabela th{color:var(--ink-3); font-size:11px; text-transform:uppercase; 
   </div>
 </section>
 
-<!-- ======================= MENSAGENS MARCANTES ======================= -->
-<section id="marcantes" hidden>
-  <div class="wrap">
-    <p class="eyebrow reveal">Do arquivo</p>
-    <h2 class="section-title reveal">Mensagens que eu guardei</h2>
-    <p class="section-sub reveal">Algumas coisas merecem ser lidas de novo.</p>
-    <div class="chat reveal" id="chat"></div>
-  </div>
-</section>
-
 <!-- ======================= CARTA ======================= -->
 <section class="carta" id="carta">
   <div class="wrap carta-inner">
@@ -336,7 +316,6 @@ details.tabela th{color:var(--ink-3); font-size:11px; text-transform:uppercase; 
     <h2 class="section-title reveal" id="cartaTitulo"></h2>
     <div class="reveal" id="cartaTexto" style="margin-top:40px"></div>
     <p class="assinatura reveal" id="cartaAssinatura"></p>
-    <div class="musica reveal" id="musica"></div>
   </div>
 </section>
 
@@ -377,7 +356,7 @@ function diasEntre(isoA, isoB){
 (function capa(){
   const c = D.capa || {};
   $('#nomes').innerHTML = `${esc(c.nomeEle||'')}<span class="amp">&amp;</span>${esc(c.nomeEla||'')}`;
-  $('#capaTitulo').innerHTML = `${esc(c.titulo||'Dois anos')}<em>${esc(c.subtitulo||'de nós')}</em>`;
+  $('#capaTitulo').innerHTML = `${esc(c.titulo||'Dois anos')}<em>${esc(c.subtitulo||'de Marivando')}</em>`;
   $('#capaFrase').textContent = c.fraseAbertura || '';
   document.title = `${c.nomeEle||''} & ${c.nomeEla||''} — nossa história`;
 
@@ -471,8 +450,6 @@ document.addEventListener('keydown', e=>{ if(e.key==='Escape') fecharLightbox();
 
 /* ===========================================================================
    GRÁFICOS  (SVG puro — sem biblioteca)
-   Regras aplicadas: uma escala por eixo, série única em um só matiz,
-   rótulo direto só no valor de destaque, tooltip no hover, tabela alternativa.
    =========================================================================== */
 const tip = $('#tooltip');
 function mostrarTip(e, html){
@@ -550,8 +527,7 @@ function barras(dados, {altura=200, unidade='mensagens', largura=760}={}){
 }
 
 /**
- * Envelope responsivo: mede a largura real disponível e redesenha o gráfico
- * sempre que ela muda (girar o celular, redimensionar a janela).
+ * Envelope responsivo
  */
 function grafico(construir){
   const caixa = el('div');
@@ -637,7 +613,7 @@ function ranking(itens, {emoji=false, unidade=''}={}){
 
   const [p1, p2] = pes;
 
-  // --- número herói + KPIs -------------------------------------------------
+  // ---KPIs -------------------------------------------------
   const topo = el('div','reveal');
   topo.innerHTML = `
     <div style="margin-bottom:34px">
@@ -769,23 +745,6 @@ function ranking(itens, {emoji=false, unidade=''}={}){
     </div>`;
   alvo.appendChild(cRec);
 })();
-
-/* ===========================================================================
-   MENSAGENS MARCANTES
-   =========================================================================== 
-(function marcantes(){
-  const itens = D.mensagensMarcantes||[];
-  if(!itens.length) return;
-  const alvo = $('#chat');
-  alvo.closest('section').hidden = false;
-  itens.forEach(m=>{
-    const b = el('div','balao ' + (m.de==='ele'?'ele':'ela'));
-    b.innerHTML = `<p>${esc(m.texto)}</p>
-      <span class="meta">${dataPT(m.data,{curto:true})}${m.contexto?' · '+esc(m.contexto):''}</span>`;
-    alvo.appendChild(b);
-  });
-})();
-*/
 
 /* ===========================================================================
    CARTA E MÚSICA
