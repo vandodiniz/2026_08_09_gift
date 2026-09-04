@@ -152,6 +152,28 @@ section{padding:clamp(64px,10vw,120px) 24px}
 .contador div + div{border-left:1px solid var(--line)}
 .contador b{display:block; font-family:var(--serif); font-size:26px; font-weight:400; line-height:1.1}
 .contador span{font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-3)}
+/* Em tela estreita as 6 células em linha dão 547px e não cabem: o contador
+   empurrava a capa inteira para fora da viewport. Vira grade de 3 por 2.
+   O "gap" sobre o fundo colorido faz as linhas divisórias, nos dois eixos. */
+@media (max-width:560px){
+  .contador{
+    display:grid; grid-template-columns:repeat(3,1fr);
+    gap:1px; background:var(--line); max-width:100%;
+  }
+  .contador div{min-width:0; padding:12px 6px; background:var(--surface-2)}
+  .contador div + div{border-left:0}
+  .contador b{font-size:22px}
+  .contador span{font-size:9px; letter-spacing:.06em}
+}
+/* Tabela "quantas vezes a gente disse": no desktop o rótulo não quebra; em tela
+   estreita ele precisa quebrar, senão empurra a barra para uns poucos pixels. */
+.tab-expressoes .exp-nome{white-space:nowrap}
+@media (max-width:560px){
+  .tab-expressoes{font-size:13px}
+  .tab-expressoes .exp-nome{white-space:normal; padding-right:8px !important}
+  .tab-expressoes .exp-barra{min-width:58px}
+}
+
 .scroll-cue{
   position:absolute; bottom:26px; left:50%; transform:translateX(-50%); z-index:1;
   font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-3);
@@ -202,10 +224,21 @@ section{padding:clamp(64px,10vw,120px) 24px}
 /* ===========================================================================
    GALERIA
    =========================================================================== */
-.galeria{columns:3 240px; column-gap:14px}
-.galeria figure{break-inside:avoid; margin:0 0 14px; position:relative; cursor:zoom-in;
+/* Grade, e não `columns`. Com multicol as fotos ainda não carregadas têm altura
+   zero, o contêiner colapsa (24 fotos couberam em 721px), elas nunca entram na
+   viewport e o loading="lazy" nunca dispara — a galeria fica em branco.
+   A grade com aspect-ratio reserva o espaço de cada foto antes de ela chegar,
+   o que quebra esse impasse e ainda evita o layout pulando durante a rolagem. */
+.galeria{
+  display:grid; gap:14px;
+  grid-template-columns:repeat(auto-fill,minmax(min(240px,100%),1fr));
+}
+.galeria figure{margin:0; position:relative; cursor:zoom-in;
   border-radius:var(--radius); overflow:hidden; border:1px solid var(--line); box-shadow:var(--shadow)}
-.galeria img{width:100%; transition:transform .5s ease,filter .4s ease}
+.galeria img{
+  width:100%; height:100%; aspect-ratio:4/5; object-fit:cover;
+  transition:transform .5s ease,filter .4s ease;
+}
 .galeria figure:hover img{transform:scale(1.04)}
 .galeria figcaption{
   position:absolute; inset:auto 0 0 0; padding:26px 14px 12px; font-size:13px; color:#fff;
@@ -852,12 +885,12 @@ function ranking(itens, {emoji=false, unidade=''}={}){
         <li><span class="swatch" style="background:var(--pessoa-1)"></span>${esc(p1.nome)}</li>
         <li><span class="swatch" style="background:var(--pessoa-2)"></span>${esc(p2.nome)}</li>
       </ul>
-      <table style="width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums">
+      <table class="tab-expressoes" style="width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums">
       <tbody>${S.expressoes.map(e=>{
         const a = e.porPessoa[p1.nomeChave]||0, b = e.porPessoa[p2.nomeChave]||0, tt = a+b||1;
         return `<tr>
-          <td style="padding:11px 12px 11px 0;border-top:1px solid var(--line);white-space:nowrap">“${esc(e.expressao)}”</td>
-          <td style="padding:11px 0;border-top:1px solid var(--line);width:100%">
+          <td class="exp-nome" style="padding:11px 12px 11px 0;border-top:1px solid var(--line)">“${esc(e.expressao)}”</td>
+          <td class="exp-barra" style="padding:11px 0;border-top:1px solid var(--line);width:100%">
             <span style="display:flex;gap:2px;height:9px">
               <span style="background:var(--pessoa-1);width:${a/tt*100}%;border-radius:5px 0 0 5px"></span>
               <span style="background:var(--pessoa-2);width:${b/tt*100}%;border-radius:0 5px 5px 0"></span>
