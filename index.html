@@ -97,7 +97,7 @@
 
 /* =========================================================================== */
 *,*::before,*::after{box-sizing:border-box}
-html{scroll-behavior:smooth}
+
 body{
   margin:0; background:var(--surface); color:var(--ink);
   font-family:var(--sans); font-size:17px; line-height:1.65;
@@ -119,7 +119,6 @@ section{padding:clamp(64px,10vw,120px) 24px}
 .reveal.on{opacity:1; transform:none}
 @media (prefers-reduced-motion:reduce){
   .reveal{opacity:1 !important; transform:none !important; transition:none}
-  html{scroll-behavior:auto}
 }
 
 /* ===========================================================================
@@ -420,6 +419,30 @@ function diasEntre(isoA, isoB){
   const a = new Date(isoA+'T00:00:00'), b = isoB ? new Date(isoB+'T00:00:00') : new Date();
   return Math.floor((b-a)/86400000);
 }
+
+
+let rolagemLegitimaAte = 0;
+// Só estende a janela, nunca encurta: o guard renova de 500 em 500 ms durante a
+// rolagem, e isso não pode atropelar a janela maior que um clique em âncora abre.
+const marcarRolagemLegitima = (ms=500) =>
+  { rolagemLegitimaAte = Math.max(rolagemLegitimaAte, Date.now() + ms); };
+
+['wheel','touchstart','touchmove','keydown','pointerdown'].forEach(ev =>
+  addEventListener(ev, () => marcarRolagemLegitima(), {passive:true, capture:true}));
+
+// Links âncora: a suavidade é feita aqui, e não com scroll-behavior:smooth no
+// CSS, porque a propriedade também anima as rolagens que o NAVEGADOR provoca.
+addEventListener('click', e => {
+  const link = e.target.closest('a[href^="#"]');
+  if(!link) return;
+  const alvo = document.querySelector(link.getAttribute('href'));
+  if(!alvo) return;
+  e.preventDefault();
+  const suave = !matchMedia('(prefers-reduced-motion:reduce)').matches;
+  // Esta rolagem é pedida pela pessoa: garante a janela por toda a animação.
+  marcarRolagemLegitima(2000);
+  alvo.scrollIntoView({behavior: suave ? 'smooth' : 'auto', block:'start'});
+});
 
 /* ===========================================================================
    TEMA (claro / escuro / automático)
@@ -882,6 +905,37 @@ function ranking(itens, {emoji=false, unidade=''}={}){
         <iframe style="height:${id[0]==='track'?152:352}px" loading="lazy"
           src="https://open.spotify.com/embed/${id[0]}/${id[1]}?utm_source=generator"
           allow="encrypted-media" title="Trilha sonora"></iframe>`;
+
+      const frame = $('#musica iframe');
+
+      // Quantos pixels do player estão visíveis agora.
+      const visivelDoPlayer = () => {
+        const r = frame.getBoundingClientRect();
+        return Math.max(0, Math.min(r.bottom, innerHeight) - Math.max(r.top, 0));
+      };
+
+      let posSegura = window.scrollY;
+      let visAnterior = visivelDoPlayer();
+
+      addEventListener('scroll', () => {
+        if(Date.now() < rolagemLegitimaAte){
+          // Movimento que a pessoa pediu. Renova a janela para cobrir inteira a
+          // animação suave de um clique em âncora.
+          posSegura   = window.scrollY;
+          visAnterior = visivelDoPlayer();
+          marcarRolagemLegitima();
+          return;
+        }
+
+        const visAgora = visivelDoPlayer();
+
+        if(visAgora > visAnterior + 2 || Math.abs(window.scrollY - posSegura) > 120){
+          window.scrollTo({top:posSegura});
+        }else{
+          posSegura   = window.scrollY;
+          visAnterior = visAgora;
+        }
+      }, {passive:true});
     }
   }
 })();
