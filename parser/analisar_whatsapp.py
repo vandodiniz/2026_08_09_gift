@@ -49,12 +49,12 @@ INVISIVEIS = dict.fromkeys(map(ord, "‎‏‪‬⁦⁧⁨⁩﻿"), None)
 
 PADRAO_IOS = re.compile(
     r"^\[(?P<data>\d{1,2}/\d{1,2}/\d{2,4})[,\s]+(?P<hora>\d{1,2}:\d{2}(?::\d{2})?)"
-    r"(?:\s*(?P<ampm>[AaPp]\.?[Mm]\.?))?\]\s*(?P<autor>[^:]{1,60}?):\s(?P<texto>.*)$"
+    r"(?:\s*(?P<ampm>[AaPp]\.?[Mm]\.?))?\]\s*(?P<autor>[^:]{1,60}?):(?:\s(?P<texto>.*))?$"
 )
 
 PADRAO_ANDROID = re.compile(
     r"^(?P<data>\d{1,2}/\d{1,2}/\d{2,4}),?\s+(?P<hora>\d{1,2}:\d{2}(?::\d{2})?)"
-    r"(?:\s*(?P<ampm>[AaPp]\.?[Mm]\.?))?\s+-\s+(?P<autor>[^:]{1,60}?):\s(?P<texto>.*)$"
+    r"(?:\s*(?P<ampm>[AaPp]\.?[Mm]\.?))?\s+-\s+(?P<autor>[^:]{1,60}?):(?:\s(?P<texto>.*))?$"
 )
 
 # Linhas de sistema (sem "Autor:") que devem ser ignoradas por completo.
@@ -120,7 +120,9 @@ def ler_conversa(caminho: Path) -> list[dict]:
                 {
                     "quando": quando,
                     "autor": m.group("autor").strip(),
-                    "texto": m.group("texto").strip(),
+                    # "texto" é None quando a linha termina no "Autor:" — é assim
+                    # que um export SEM mídia representa cada foto/vídeo/áudio.
+                    "texto": (m.group("texto") or "").strip(),
                 }
             )
         elif mensagens and not PADRAO_SISTEMA.match(linha):
@@ -138,8 +140,17 @@ MIDIA_PADROES = re.compile(
     r"(mídia oculta|midia oculta|arquivo de mídia oculto|imagem ocultada|"
     r"图片|áudio ocultado|audio ocultado|vídeo omitido|video omitido|"
     r"figurinha omitida|gif omitido|documento omitido|sticker omitted|"
-    r"image omitted|video omitted|audio omitted|this message was deleted|"
-    r"mensagem apagada|você apagou esta mensagem|essa mensagem foi apagada)",
+    r"image omitted|video omitted|audio omitted|video note omitted|"
+    r"arquivo anexado)",
+    re.IGNORECASE,
+)
+
+# Mensagem apagada NÃO é mídia. Estavam no mesmo regex, e como este export não
+# traz placeholder de mídia, o contador de "fotos e áudios" acabava mostrando
+# só a contagem de mensagens apagadas.
+APAGADA_PADROES = re.compile(
+    r"(this message was deleted|mensagem apagada|"
+    r"você apagou esta mensagem|essa mensagem foi apagada)",
     re.IGNORECASE,
 )
 
@@ -156,7 +167,15 @@ URL = re.compile(r"https?://\S+|www\.\S+")
 
 
 def eh_midia(texto: str) -> bool:
+    # Num export "sem mídia" cada foto/vídeo/áudio vira uma mensagem de corpo
+    # vazio — é o único vestígio que sobra dela.
+    if not texto.strip():
+        return True
     return bool(MIDIA_PADROES.search(texto))
+
+
+def eh_apagada(texto: str) -> bool:
+    return bool(APAGADA_PADROES.search(texto))
 
 
 def eh_sistema(texto: str) -> bool:
@@ -259,6 +278,7 @@ def analisar(mensagens: list[dict]) -> dict:
             "palavras": 0,
             "caracteres": 0,
             "midias": 0,
+            "apagadas": 0,
             "emojis": Counter(),
             "palavras_top": Counter(),
         }
@@ -275,7 +295,11 @@ def analisar(mensagens: list[dict]) -> dict:
     expressoes_re = {nome: re.compile(p, re.IGNORECASE) for nome, p in EXPRESSOES.items()}
 
     total_midias = 0
+    total_apagadas = 0
     mensagens_validas = []
+    mais_longa: dict | None = None
+    primeiro_te_amo: dict | None = None
+    TE_AMO = re.compile(r"\bte\s+amo\b", re.IGNORECASE)
 
     for m in mensagens:
         if eh_sistema(m["texto"]):
@@ -296,6 +320,11 @@ def analisar(mensagens: list[dict]) -> dict:
         d = por_autor[autor]
         d["mensagens"] += 1
 
+        if eh_apagada(texto):
+            d["apagadas"] += 1
+            total_apagadas += 1
+            continue
+
         if eh_midia(texto):
             d["midias"] += 1
             total_midias += 1
@@ -304,6 +333,18 @@ def analisar(mensagens: list[dict]) -> dict:
         d["caracteres"] += len(texto)
         palavras = extrair_palavras(texto)
         d["palavras"] += len(palavras)
+
+        if mais_longa is None or len(texto) > mais_longa["caracteres"]:
+            mais_longa = {
+                "caracteres": len(texto),
+                "palavras": len(palavras),
+                "autor": autor,
+                "quando": quando.isoformat(timespec="minutes"),
+                "trecho": texto[:280],
+            }
+
+        if primeiro_te_amo is None and TE_AMO.search(texto):
+            primeiro_te_amo = {"autor": autor, "quando": quando.isoformat(timespec="minutes")}
 
         for p in palavras:
             pn = normalizar(p)
@@ -341,7 +382,24 @@ def analisar(mensagens: list[dict]) -> dict:
             seq_atual = 1
     seq_inicio = seq_fim - timedelta(days=maior_seq - 1)
 
+    # maior intervalo sem trocar nenhuma mensagem (o contrário da sequência)
+    maior_silencio = 0
+    silencio_de = silencio_ate = datas[0]
+    for anterior, atual in zip(datas, datas[1:]):
+        vazio = (atual - anterior).days - 1
+        if vazio > maior_silencio:
+            maior_silencio, silencio_de, silencio_ate = vazio, anterior, atual
+
     dia_recorde, msgs_recorde = por_dia.most_common(1)[0]
+
+    # quantos dias da primeira mensagem até o primeiro "te amo"
+    if primeiro_te_amo:
+        quando_te_amo = datetime.fromisoformat(primeiro_te_amo["quando"])
+        primeiro_te_amo["diasAteAqui"] = (quando_te_amo.date() - primeira.date()).days
+
+    # hora do dia e mês em que mais se falaram
+    hora_pico = max(range(24), key=lambda h: por_hora[h])
+    mes_pico = max(por_mes.items(), key=lambda kv: kv[1])
 
     # tempo médio de resposta (só conta trocas com menos de 6 horas de intervalo)
     respostas: dict[str, list[float]] = defaultdict(list)
@@ -384,6 +442,7 @@ def analisar(mensagens: list[dict]) -> dict:
             "palavras": d["palavras"],
             "caracteres": d["caracteres"],
             "midias": d["midias"],
+            "apagadas": d["apagadas"],
             "mediaPalavrasPorMensagem": round(d["palavras"] / d["mensagens"], 1) if d["mensagens"] else 0,
             "emojisTop": [{"emoji": e, "n": n} for e, n in d["emojis"].most_common(8)],
             "palavrasTop": [{"palavra": p, "n": n} for p, n in d["palavras_top"].most_common(15)],
@@ -407,6 +466,7 @@ def analisar(mensagens: list[dict]) -> dict:
             "mensagens": total_msgs,
             "palavras": total_palavras,
             "midias": total_midias,
+            "apagadas": total_apagadas,
             "mediaPorDia": round(total_msgs / dias_totais, 1),
             "emojis": sum(emojis_geral.values()),
         },
@@ -420,6 +480,15 @@ def analisar(mensagens: list[dict]) -> dict:
             "maiorSequenciaDias": maior_seq,
             "sequenciaInicio": seq_inicio.isoformat(),
             "sequenciaFim": seq_fim.isoformat(),
+            "maiorSilencioDias": maior_silencio,
+            "silencioDe": silencio_de.isoformat(),
+            "silencioAte": silencio_ate.isoformat(),
+            "horaPico": hora_pico,
+            "mensagensNaHoraPico": por_hora[hora_pico],
+            "mesPico": mes_pico[0],
+            "mensagensNoMesPico": mes_pico[1],
+            "mensagemMaisLonga": mais_longa,
+            "primeiroTeAmo": primeiro_te_amo,
         },
         "emojisTop": [{"emoji": e, "n": n} for e, n in emojis_geral.most_common(10)],
         "palavrasTop": [{"palavra": p, "n": n} for p, n in palavras_geral.most_common(30)],

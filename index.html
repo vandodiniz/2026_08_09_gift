@@ -410,6 +410,12 @@ function dataPT(iso,{curto=false}={}){
   const [a,m,d] = iso.slice(0,10).split('-').map(Number);
   return curto ? `${d} ${MES_EXT[m-1].slice(0,3)} ${a}` : `${d} de ${MES_EXT[m-1]} de ${a}`;
 }
+// "2025-03" -> "março de 2025"
+function mesPT(chave){
+  if(!chave) return '';
+  const [a,m] = chave.split('-').map(Number);
+  return `${MES_EXT[m-1]} de ${a}`;
+}
 function diasEntre(isoA, isoB){
   const a = new Date(isoA+'T00:00:00'), b = isoB ? new Date(isoB+'T00:00:00') : new Date();
   return Math.floor((b-a)/86400000);
@@ -715,6 +721,9 @@ function ranking(itens, {emoji=false, unidade=''}={}){
     if (NOMES_DISPLAY[base]) pessoa.nome = NOMES_DISPLAY[base];
   });
 
+  // Converte um nome cru do stats.js (ex.: "Marianjo 🐧") no nome de exibição
+  const exibirNome = raw => (pes.find(x => x.nomeChave === raw) || {}).nome || raw;
+
   const [p1, p2] = pes;
 
   // ---KPIs -------------------------------------------------
@@ -846,6 +855,12 @@ function ranking(itens, {emoji=false, unidade=''}={}){
       <div class="kpi"><b>${num(rec.maiorSequenciaDias)}</b><span>dias seguidos sem falhar um dia (${dataPT(rec.sequenciaInicio,{curto:true})} a ${dataPT(rec.sequenciaFim,{curto:true})})</span></div>
       <div class="kpi"><b>${num(p.diasComConversa)}</b><span>dias com conversa, de ${num(p.diasTotais)} possíveis</span></div>
       <div class="kpi"><b>${num(t.midias)}</b><span>fotos, áudios e vídeos enviados</span></div>
+      <div class="kpi"><b>${rec.horaPico}h</b><span>a hora preferida — ${num(rec.mensagensNaHoraPico)} mensagens trocadas nela</span></div>
+      <div class="kpi"><b>${num(rec.mensagensNoMesPico)}</b><span>mensagens em ${mesPT(rec.mesPico)}, nosso mês mais falante</span></div>
+      <div class="kpi"><b>${num(rec.maiorSilencioDias)}</b><span>dias — o maior tempo que ficamos sem trocar mensagem</span></div>
+      <div class="kpi"><b>${num(t.apagadas)}</b><span>mensagens apagadas (o que será que era?)</span></div>
+      ${rec.primeiroTeAmo ? `
+      <div class="kpi"><b>${num(rec.primeiroTeAmo.diasAteAqui)}</b><span>dias da primeira mensagem até o primeiro “te amo”, em ${dataPT(rec.primeiroTeAmo.quando,{curto:true})}</span></div>` : ''}
     </div>`;
   alvo.appendChild(cRec);
 })();
