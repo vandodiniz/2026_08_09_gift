@@ -1,12 +1,7 @@
 // =============================================================================
-//  dados.js  —  ESTE É O ÚNICO ARQUIVO QUE VOCÊ PRECISA EDITAR
+//  dados.js  — 
 // =============================================================================
-//  Regras rápidas:
-//   • Textos ficam entre aspas: "assim".
-//   • Sempre vírgula no fim de cada linha (menos na última de cada bloco).
-//   • Datas no formato "AAAA-MM-DD".
-//   • Para apagar um item, apague o bloco inteiro { ... }, incluindo a vírgula.
-//   • Emojis podem ser colados direto: "🎂".
+
 // =============================================================================
 
 window.DADOS = {
@@ -15,20 +10,17 @@ window.DADOS = {
   // ---------------------------------------------------------------------------
   capa: {
     nomeEle: "Vando",
-    nomeEla: "Mari",              // <-- coloque o nome dela
-    dataInicio: "2024-09-08",    // o dia em que vocês começaram a namorar
+    nomeEla: "Mari",              
+    dataInicio: "2024-09-08",    
     titulo: "Dois anos",
     subtitulo: "de nós",
     fraseAbertura: "Uma linha do tempo da nossa história",
-    fotoCapa: "",  // "fotos/timeline/capa.jpg" || deixe "" se ainda não tiver a foto
+    fotoCapa: "",  
   },
 
   // ---------------------------------------------------------------------------
   // TIMELINE — os momentos marcantes
   // ---------------------------------------------------------------------------
-  // Dica: entre 8 e 15 momentos é o número que funciona melhor. Menos que isso
-  // fica vazio, mais que isso cansa antes do fim.
-  // "foto" é opcional — se você não tiver, deixe "" e o item fica só com texto.
   // ---------------------------------------------------------------------------
   timeline: [
     {
@@ -420,7 +412,7 @@ window.DADOS = {
       texto: "Segundo Dia dos Namorados juntos! Nada mais romântico e com a nossa cara do que curtir um show à luz de velas e depois engatar direto em uma caça ao tesouro.",
       foto: "fotos/timeline/20260612_200123.jpg",
       emoji: "🕯️",
-      destaque: true, // Recomendo deixar true por ser o Dia dos Namorados!
+      destaque: true, 
     },
     {
       data: "2026-06-26",
@@ -436,7 +428,7 @@ window.DADOS = {
       texto: "Mais um aniversário do seu lado! Passamos a virada no aeroporto, prestes a embarcar na nossa primeiríssima viagem internacional juntos!",
       foto: "fotos/timeline/20260802_004444.jpg",
       emoji: "✈️",
-      destaque: false, // Super recomendo o true aqui pelo peso da primeira viagem internacional!
+      destaque: false, 
     },
     {
       data: "2026-08-03",
@@ -476,8 +468,7 @@ window.DADOS = {
   // GALERIA DE FOTOS
   // ---------------------------------------------------------------------------
   // ---------------------------------------------------------------------------
-  // As fotos abaixo são EXEMPLOS coloridos, só para você ver o site cheio.
-  // Troque os arquivos da pasta fotos/timeline/ pelos seus e ajuste as legendas.
+
   galeria: [
     { arquivo: "fotos/timeline/mural/20240921_081044.jpg",              legenda: "21 de setembro de 2024" },
     { arquivo: "fotos/timeline/mural/20241019_094334.jpg",              legenda: "19 de outubro de 2024" },
@@ -545,11 +536,9 @@ window.DADOS = {
   // ---------------------------------------------------------------------------
   // TRILHA SONORA (opcional)
   // ---------------------------------------------------------------------------
-  // Cole o link de uma playlist ou música do Spotify. Deixe "" para não mostrar.
-  // Como pegar: no Spotify → Compartilhar → Copiar link.
   // ---------------------------------------------------------------------------
   musica: {
-    spotify: "https://open.spotify.com/intl-pt/album/6laUDBtyfu4ngRbOsblhfS",
+    spotify: "https://open.spotify.com/playlist/4tpo428VsbFw6TQt4tKG8d",
     legenda: "A trilha sonora desses dois anos",
   },
 };
