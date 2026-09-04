@@ -437,6 +437,13 @@ def analisar(mensagens: list[dict]) -> dict:
 
 
 def main() -> None:
+    # O console do Windows usa cp1252 e quebra ao imprimir "→" ou os emojis que
+    # vêm nos nomes dos contatos. Força UTF-8 na saída.
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception:
+        pass
+
     _dir = Path(__file__).resolve().parent
     ap = argparse.ArgumentParser(description="Gera as estatísticas da conversa para o site.")
     ap.add_argument(
@@ -444,7 +451,9 @@ def main() -> None:
         type=Path, default=_dir / "conversa.txt",
         help="conversa exportada do WhatsApp (.txt) — padrão: parser/conversa.txt",
     )
-    ap.add_argument("--inicio", default="2024-09-08", help="considerar só a partir desta data (AAAA-MM-DD)")
+    # Sem --inicio, conta a conversa inteira (o site mostra desde o primeiro
+    # contato, em jun/2024). Passe --inicio 2024-09-08 para contar só o namoro.
+    ap.add_argument("--inicio", help="considerar só a partir desta data (AAAA-MM-DD)")
     ap.add_argument("--fim", help="considerar só até esta data (AAAA-MM-DD)")
     ap.add_argument("--saida", type=Path, default=_dir.parent / "stats.js")
     args = ap.parse_args()

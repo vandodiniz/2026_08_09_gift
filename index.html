@@ -39,6 +39,11 @@
   --serie-1:var(--p-carmim); --serie-2:var(--p-teal);
   --serie-3:var(--p-ouro);   --serie-4:var(--p-azul);
 
+  /* Cores das duas pessoas nos gráficos. Referenciam as séries (que mudam no
+     tema escuro), então basta inverter estas duas linhas para trocar as cores. */
+  --pessoa-1:var(--serie-2);  /* Vando   */
+  --pessoa-2:var(--serie-1);  /* Mariana */
+
   /* --- escala sequencial (creme → carmim) --- */
   --seq-1:#FCE8EE; --seq-2:#F5BFCC; --seq-3:#E888A0; --seq-4:#D34870; --seq-5:var(--p-carmim);
 
@@ -657,7 +662,7 @@ function barraDividida(a, b){
   const svg = svgEl('svg',{class:'split', viewBox:`0 0 ${W} ${H}`, preserveAspectRatio:'none', role:'img'});
   const wa = Math.max(0,(a.valor/total)*W - GAP/2);
   const wb = Math.max(0,(b.valor/total)*W - GAP/2);
-  [[0,wa,'var(--serie-1)',a],[wa+GAP,wb,'var(--serie-2)',b]].forEach(([x,w,fill,d])=>{
+  [[0,wa,'var(--pessoa-1)',a],[wa+GAP,wb,'var(--pessoa-2)',b]].forEach(([x,w,fill,d])=>{
     const r = svgEl('rect',{x, y:0, width:w, height:H, rx:6, fill});
     r.addEventListener('mousemove', e=>mostrarTip(e,
       `<b>${esc(d.nome)}</b><br>${num(d.valor)} mensagens · ${Math.round(d.valor/total*100)}%`));
@@ -699,9 +704,13 @@ function ranking(itens, {emoji=false, unidade=''}={}){
 
   const p = S.periodo, t = S.totais, pes = S.pessoas, rec = S.recordes;
 
-  // Mapeia nomes do WhatsApp para nomes de exibição
+  // Mapeia nomes do WhatsApp para nomes de exibição.
+  // ATENÇÃO: "nomeChave" guarda o nome original, porque os dados de stats.js
+  // (ex.: expressoes[].porPessoa) são indexados por ele. Buscar por "nome"
+  // depois do rename devolve undefined e o contador zera silenciosamente.
   const NOMES_DISPLAY = { "Vando": "Vando", "Marianjo": "Mariana" };
   pes.forEach(pessoa => {
+    pessoa.nomeChave = pessoa.nome;
     const base = pessoa.nome.replace(/[^\w\s]/gu, '').trim().split(' ')[0];
     if (NOMES_DISPLAY[base]) pessoa.nome = NOMES_DISPLAY[base];
   });
@@ -729,8 +738,8 @@ function ranking(itens, {emoji=false, unidade=''}={}){
   cQuem.innerHTML = `<h3>Quem falou mais</h3>
     <p class="card-sub">Total de mensagens de cada um, lado a lado.</p>
     <ul class="legenda">
-      <li><span class="swatch" style="background:var(--serie-1)"></span>${esc(p1.nome)}</li>
-      <li><span class="swatch" style="background:var(--serie-2)"></span>${esc(p2.nome)}</li>
+      <li><span class="swatch" style="background:var(--pessoa-1)"></span>${esc(p1.nome)}</li>
+      <li><span class="swatch" style="background:var(--pessoa-2)"></span>${esc(p2.nome)}</li>
     </ul>`;
   cQuem.appendChild(barraDividida({nome:p1.nome, valor:p1.mensagens},{nome:p2.nome, valor:p2.mensagens}));
   const totalM = p1.mensagens + p2.mensagens;
@@ -808,18 +817,18 @@ function ranking(itens, {emoji=false, unidade=''}={}){
     c.innerHTML = `<h3>Quantas vezes a gente disse</h3>
       <p class="card-sub">Contagem por pessoa.</p>
       <ul class="legenda">
-        <li><span class="swatch" style="background:var(--serie-1)"></span>${esc(p1.nome)}</li>
-        <li><span class="swatch" style="background:var(--serie-2)"></span>${esc(p2.nome)}</li>
+        <li><span class="swatch" style="background:var(--pessoa-1)"></span>${esc(p1.nome)}</li>
+        <li><span class="swatch" style="background:var(--pessoa-2)"></span>${esc(p2.nome)}</li>
       </ul>
       <table style="width:100%;border-collapse:collapse;font-size:14px;font-variant-numeric:tabular-nums">
       <tbody>${S.expressoes.map(e=>{
-        const a = e.porPessoa[p1.nome]||0, b = e.porPessoa[p2.nome]||0, tt = a+b||1;
+        const a = e.porPessoa[p1.nomeChave]||0, b = e.porPessoa[p2.nomeChave]||0, tt = a+b||1;
         return `<tr>
           <td style="padding:11px 12px 11px 0;border-top:1px solid var(--line);white-space:nowrap">“${esc(e.expressao)}”</td>
           <td style="padding:11px 0;border-top:1px solid var(--line);width:100%">
             <span style="display:flex;gap:2px;height:9px">
-              <span style="background:var(--serie-1);width:${a/tt*100}%;border-radius:5px 0 0 5px"></span>
-              <span style="background:var(--serie-2);width:${b/tt*100}%;border-radius:0 5px 5px 0"></span>
+              <span style="background:var(--pessoa-1);width:${a/tt*100}%;border-radius:5px 0 0 5px"></span>
+              <span style="background:var(--pessoa-2);width:${b/tt*100}%;border-radius:0 5px 5px 0"></span>
             </span>
           </td>
           <td style="padding:11px 0 11px 14px;border-top:1px solid var(--line);text-align:right;white-space:nowrap;color:var(--ink-2)">

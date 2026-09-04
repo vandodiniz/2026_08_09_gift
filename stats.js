@@ -1,239 +1,254 @@
 // Gerado automaticamente por parser/analisar_whatsapp.py — não edite à mão.
 window.STATS = {
-  "gerado": "2026-08-31T15:11:11",
+  "gerado": "2026-09-03T21:00:25",
   "periodo": {
-    "inicio": "2024-09-08",
+    "inicio": "2024-06-13",
     "fim": "2026-07-22",
-    "diasTotais": 683,
-    "diasComConversa": 661,
+    "diasTotais": 770,
+    "diasComConversa": 746,
     "percentualDiasFalando": 97
   },
   "totais": {
-    "mensagens": 170628,
-    "palavras": 683507,
-    "midias": 512,
-    "mediaPorDia": 249.8,
-    "emojis": 1803
+    "mensagens": 191671,
+    "palavras": 760345,
+    "midias": 562,
+    "mediaPorDia": 248.9,
+    "emojis": 2745
   },
   "pessoas": [
     {
       "nome": "Vando",
-      "mensagens": 96559,
-      "palavras": 340107,
-      "caracteres": 2037405,
-      "midias": 121,
+      "mensagens": 109755,
+      "palavras": 384228,
+      "caracteres": 2309530,
+      "midias": 127,
       "mediaPalavrasPorMensagem": 3.5,
       "emojisTop": [
         {
           "emoji": "🤨",
-          "n": 163
-        },
-        {
-          "emoji": "🫠",
-          "n": 81
+          "n": 247
         },
         {
           "emoji": "😭",
-          "n": 73
+          "n": 155
         },
         {
-          "emoji": "😡",
-          "n": 49
-        },
-        {
-          "emoji": "🫣",
-          "n": 32
-        },
-        {
-          "emoji": "👺",
-          "n": 31
-        },
-        {
-          "emoji": "😎",
-          "n": 24
+          "emoji": "🫠",
+          "n": 141
         },
         {
           "emoji": "🥰",
-          "n": 21
+          "n": 58
+        },
+        {
+          "emoji": "😡",
+          "n": 55
+        },
+        {
+          "emoji": "🫣",
+          "n": 51
+        },
+        {
+          "emoji": "👺",
+          "n": 48
+        },
+        {
+          "emoji": "😎",
+          "n": 45
         }
       ],
       "palavrasTop": [
         {
           "palavra": "dia",
-          "n": 1489
-        },
-        {
-          "palavra": "gnt",
-          "n": 1306
+          "n": 1640
         },
         {
           "palavra": "acho",
-          "n": 1306
+          "n": 1433
+        },
+        {
+          "palavra": "gnt",
+          "n": 1420
         },
         {
           "palavra": "msm",
-          "n": 1066
+          "n": 1159
         },
         {
           "palavra": "casa",
-          "n": 1026
+          "n": 1139
         },
         {
           "palavra": "sei",
-          "n": 1021
+          "n": 1131
         },
         {
           "palavra": "amanha",
-          "n": 1020
+          "n": 1103
         },
         {
           "palavra": "pode",
-          "n": 945
+          "n": 1040
         },
         {
           "palavra": "ate",
-          "n": 844
-        },
-        {
-          "palavra": "quero",
-          "n": 758
-        },
-        {
-          "palavra": "tendi",
-          "n": 730
+          "n": 889
         },
         {
           "palavra": "nem",
-          "n": 727
+          "n": 846
         },
         {
-          "palavra": "amo",
-          "n": 715
+          "palavra": "quero",
+          "n": 808
+        },
+        {
+          "palavra": "tendi",
+          "n": 768
         },
         {
           "palavra": "ficar",
-          "n": 699
+          "n": 764
         },
         {
           "palavra": "dormir",
-          "n": 689
+          "n": 754
+        },
+        {
+          "palavra": "ficou",
+          "n": 738
         }
       ],
       "tempoRespostaMedianaMin": 0.0,
-      "primeiroDoDia": 269
+      "primeiroDoDia": 316
     },
     {
       "nome": "Marianjo 🐧",
-      "mensagens": 74069,
-      "palavras": 343400,
-      "caracteres": 2244054,
-      "midias": 391,
+      "mensagens": 81916,
+      "palavras": 376117,
+      "caracteres": 2468380,
+      "midias": 435,
       "mediaPalavrasPorMensagem": 4.6,
       "emojisTop": [
         {
           "emoji": "🤨",
-          "n": 211
+          "n": 253
         },
         {
           "emoji": "🙏🏽",
-          "n": 104
+          "n": 180
+        },
+        {
+          "emoji": "😔",
+          "n": 128
+        },
+        {
+          "emoji": "😭",
+          "n": 79
+        },
+        {
+          "emoji": "❤️",
+          "n": 62
+        },
+        {
+          "emoji": "🤡",
+          "n": 59
         },
         {
           "emoji": "✅",
           "n": 51
         },
         {
-          "emoji": "😔",
-          "n": 48
-        },
-        {
-          "emoji": "😭",
-          "n": 48
-        },
-        {
-          "emoji": "🤡",
-          "n": 40
-        },
-        {
-          "emoji": "❤️",
-          "n": 40
-        },
-        {
-          "emoji": "🚫",
-          "n": 29
+          "emoji": "😎",
+          "n": 43
         }
       ],
       "palavrasTop": [
         {
           "palavra": "acho",
-          "n": 1303
+          "n": 1413
         },
         {
           "palavra": "dia",
-          "n": 1217
-        },
-        {
-          "palavra": "sei",
-          "n": 1108
+          "n": 1290
         },
         {
           "palavra": "nem",
-          "n": 1088
+          "n": 1190
+        },
+        {
+          "palavra": "sei",
+          "n": 1177
         },
         {
           "palavra": "gente",
-          "n": 941
+          "n": 1069
         },
         {
           "palavra": "qria",
-          "n": 845
+          "n": 887
         },
         {
           "palavra": "quer",
-          "n": 837
-        },
-        {
-          "palavra": "algo",
-          "n": 820
+          "n": 884
         },
         {
           "palavra": "coisa",
-          "n": 816
+          "n": 883
+        },
+        {
+          "palavra": "algo",
+          "n": 872
         },
         {
           "palavra": "kkkk",
-          "n": 766
+          "n": 842
         },
         {
           "palavra": "okay",
-          "n": 754
-        },
-        {
-          "palavra": "cmg",
-          "n": 727
-        },
-        {
-          "palavra": "noite",
-          "n": 721
+          "n": 793
         },
         {
           "palavra": "casa",
-          "n": 715
+          "n": 776
+        },
+        {
+          "palavra": "cmg",
+          "n": 767
+        },
+        {
+          "palavra": "noite",
+          "n": 753
         },
         {
           "palavra": "ficar",
-          "n": 699
+          "n": 741
         }
       ],
       "tempoRespostaMedianaMin": 0.0,
-      "primeiroDoDia": 392
+      "primeiroDoDia": 430
     }
   ],
   "serieMensal": [
     {
+      "chave": "2024-06",
+      "rotulo": "jun/24",
+      "total": 3107
+    },
+    {
+      "chave": "2024-07",
+      "rotulo": "jul/24",
+      "total": 9115
+    },
+    {
+      "chave": "2024-08",
+      "rotulo": "ago/24",
+      "total": 7468
+    },
+    {
       "chave": "2024-09",
       "rotulo": "set/24",
-      "total": 5847
+      "total": 7200
     },
     {
       "chave": "2024-10",
@@ -349,11 +364,11 @@ window.STATS = {
   "porHora": [
     {
       "hora": 0,
-      "total": 1485
+      "total": 1782
     },
     {
       "hora": 1,
-      "total": 130
+      "total": 212
     },
     {
       "hora": 2,
@@ -365,294 +380,294 @@ window.STATS = {
     },
     {
       "hora": 4,
-      "total": 23
+      "total": 47
     },
     {
       "hora": 5,
-      "total": 378
+      "total": 410
     },
     {
       "hora": 6,
-      "total": 2201
+      "total": 2545
     },
     {
       "hora": 7,
-      "total": 6306
+      "total": 7080
     },
     {
       "hora": 8,
-      "total": 6728
+      "total": 7742
     },
     {
       "hora": 9,
-      "total": 5339
+      "total": 5788
     },
     {
       "hora": 10,
-      "total": 6195
+      "total": 7083
     },
     {
       "hora": 11,
-      "total": 6437
+      "total": 7022
     },
     {
       "hora": 12,
-      "total": 9995
+      "total": 10823
     },
     {
       "hora": 13,
-      "total": 6865
+      "total": 8099
     },
     {
       "hora": 14,
-      "total": 4498
+      "total": 5100
     },
     {
       "hora": 15,
-      "total": 5229
+      "total": 5590
     },
     {
       "hora": 16,
-      "total": 6395
+      "total": 7470
     },
     {
       "hora": 17,
-      "total": 9008
+      "total": 10735
     },
     {
       "hora": 18,
-      "total": 10249
+      "total": 11318
     },
     {
       "hora": 19,
-      "total": 9515
+      "total": 11505
     },
     {
       "hora": 20,
-      "total": 9793
+      "total": 12088
     },
     {
       "hora": 21,
-      "total": 14224
+      "total": 16895
     },
     {
       "hora": 22,
-      "total": 33879
+      "total": 36111
     },
     {
       "hora": 23,
-      "total": 15621
+      "total": 16091
     }
   ],
   "porDiaSemana": [
     {
       "dia": "Segunda",
-      "total": 32760
+      "total": 36300
     },
     {
       "dia": "Terça",
-      "total": 37563
+      "total": 41810
     },
     {
       "dia": "Quarta",
-      "total": 33197
+      "total": 36637
     },
     {
       "dia": "Quinta",
-      "total": 30519
+      "total": 33655
     },
     {
       "dia": "Sexta",
-      "total": 19227
+      "total": 21178
     },
     {
       "dia": "Sábado",
-      "total": 8012
+      "total": 9286
     },
     {
       "dia": "Domingo",
-      "total": 9350
+      "total": 12805
     }
   ],
   "recordes": {
     "diaRecorde": "2025-02-11",
     "mensagensNoDiaRecorde": 1138,
-    "maiorSequenciaDias": 102,
-    "sequenciaInicio": "2025-03-04",
-    "sequenciaFim": "2025-06-13"
+    "maiorSequenciaDias": 135,
+    "sequenciaInicio": "2024-06-20",
+    "sequenciaFim": "2024-11-01"
   },
   "emojisTop": [
     {
       "emoji": "🤨",
-      "n": 374
+      "n": 500
     },
     {
       "emoji": "😭",
-      "n": 121
+      "n": 234
     },
     {
       "emoji": "🙏🏽",
-      "n": 104
+      "n": 180
     },
     {
       "emoji": "🫠",
-      "n": 101
-    },
-    {
-      "emoji": "🤡",
-      "n": 53
-    },
-    {
-      "emoji": "❤️",
-      "n": 53
+      "n": 162
     },
     {
       "emoji": "😔",
-      "n": 51
+      "n": 132
     },
     {
-      "emoji": "😡",
-      "n": 51
+      "emoji": "🤡",
+      "n": 100
     },
     {
-      "emoji": "✅",
-      "n": 51
+      "emoji": "🥰",
+      "n": 94
     },
     {
       "emoji": "😎",
-      "n": 50
+      "n": 88
+    },
+    {
+      "emoji": "❤️",
+      "n": 75
+    },
+    {
+      "emoji": "😡",
+      "n": 57
     }
   ],
   "palavrasTop": [
     {
       "palavra": "dia",
-      "n": 2706
+      "n": 2930
     },
     {
       "palavra": "acho",
-      "n": 2609
+      "n": 2846
     },
     {
       "palavra": "sei",
-      "n": 2129
+      "n": 2308
     },
     {
       "palavra": "nem",
-      "n": 1815
+      "n": 2036
     },
     {
       "palavra": "casa",
-      "n": 1741
+      "n": 1915
     },
     {
       "palavra": "gnt",
-      "n": 1642
+      "n": 1768
     },
     {
       "palavra": "algo",
-      "n": 1473
+      "n": 1585
     },
     {
       "palavra": "coisa",
-      "n": 1435
-    },
-    {
-      "palavra": "ate",
-      "n": 1409
-    },
-    {
-      "palavra": "amo",
-      "n": 1402
-    },
-    {
-      "palavra": "ficar",
-      "n": 1398
+      "n": 1554
     },
     {
       "palavra": "pode",
-      "n": 1388
+      "n": 1508
+    },
+    {
+      "palavra": "ficar",
+      "n": 1505
+    },
+    {
+      "palavra": "ate",
+      "n": 1472
     },
     {
       "palavra": "quer",
-      "n": 1385
+      "n": 1457
+    },
+    {
+      "palavra": "amo",
+      "n": 1420
     },
     {
       "palavra": "quero",
-      "n": 1331
-    },
-    {
-      "palavra": "noite",
-      "n": 1312
+      "n": 1416
     },
     {
       "palavra": "dormir",
-      "n": 1258
+      "n": 1372
+    },
+    {
+      "palavra": "noite",
+      "n": 1371
     },
     {
       "palavra": "tempo",
-      "n": 1192
+      "n": 1319
     },
     {
       "palavra": "kkkk",
-      "n": 1158
-    },
-    {
-      "palavra": "amanha",
-      "n": 1137
+      "n": 1307
     },
     {
       "palavra": "gente",
-      "n": 1130
+      "n": 1280
+    },
+    {
+      "palavra": "amanha",
+      "n": 1231
     },
     {
       "palavra": "msm",
-      "n": 1066
-    },
-    {
-      "palavra": "falar",
-      "n": 1054
+      "n": 1159
     },
     {
       "palavra": "ficou",
-      "n": 1006
-    },
-    {
-      "palavra": "gosto",
-      "n": 991
-    },
-    {
-      "palavra": "semana",
-      "n": 962
-    },
-    {
-      "palavra": "mim",
-      "n": 916
-    },
-    {
-      "palavra": "cara",
-      "n": 913
-    },
-    {
-      "palavra": "mal",
-      "n": 898
+      "n": 1129
     },
     {
       "palavra": "kkkkk",
-      "n": 895
+      "n": 1127
     },
     {
-      "palavra": "aula",
-      "n": 878
+      "palavra": "falar",
+      "n": 1126
+    },
+    {
+      "palavra": "gosto",
+      "n": 1096
+    },
+    {
+      "palavra": "cara",
+      "n": 1055
+    },
+    {
+      "palavra": "semana",
+      "n": 1025
+    },
+    {
+      "palavra": "mim",
+      "n": 994
+    },
+    {
+      "palavra": "pelo",
+      "n": 982
+    },
+    {
+      "palavra": "fica",
+      "n": 967
     }
   ],
   "expressoes": [
     {
       "expressao": "risada (kkk)",
       "porPessoa": {
-        "Vando": 2925,
-        "Marianjo 🐧": 2144
+        "Vando": 3563,
+        "Marianjo 🐧": 2667
       },
-      "total": 5069
+      "total": 6230
     },
     {
       "expressao": "te amo",
@@ -665,50 +680,50 @@ window.STATS = {
     {
       "expressao": "boa noite",
       "porPessoa": {
-        "Vando": 324,
-        "Marianjo 🐧": 379
+        "Vando": 331,
+        "Marianjo 🐧": 384
       },
-      "total": 703
+      "total": 715
     },
     {
       "expressao": "meu bem",
       "porPessoa": {
-        "Vando": 665,
+        "Vando": 670,
         "Marianjo 🐧": 8
       },
-      "total": 673
+      "total": 678
     },
     {
       "expressao": "desculpa",
       "porPessoa": {
-        "Vando": 357,
-        "Marianjo 🐧": 238
+        "Vando": 365,
+        "Marianjo 🐧": 257
       },
-      "total": 595
-    },
-    {
-      "expressao": "bom dia",
-      "porPessoa": {
-        "Vando": 221,
-        "Marianjo 🐧": 170
-      },
-      "total": 391
+      "total": 622
     },
     {
       "expressao": "linda / lindo",
       "porPessoa": {
-        "Vando": 239,
-        "Marianjo 🐧": 152
+        "Vando": 262,
+        "Marianjo 🐧": 180
       },
-      "total": 391
+      "total": 442
+    },
+    {
+      "expressao": "bom dia",
+      "porPessoa": {
+        "Vando": 256,
+        "Marianjo 🐧": 175
+      },
+      "total": 431
     },
     {
       "expressao": "obrigado / obrigada",
       "porPessoa": {
-        "Vando": 257,
+        "Vando": 286,
         "Marianjo 🐧": 26
       },
-      "total": 283
+      "total": 312
     },
     {
       "expressao": "eu te amo",
@@ -721,34 +736,34 @@ window.STATS = {
     {
       "expressao": "amor",
       "porPessoa": {
-        "Vando": 36,
-        "Marianjo 🐧": 52
+        "Vando": 44,
+        "Marianjo 🐧": 60
       },
-      "total": 88
+      "total": 104
     },
     {
       "expressao": "casar",
       "porPessoa": {
-        "Vando": 35,
-        "Marianjo 🐧": 53
+        "Vando": 42,
+        "Marianjo 🐧": 59
       },
-      "total": 88
+      "total": 101
     },
     {
       "expressao": "saudade",
       "porPessoa": {
-        "Vando": 34,
+        "Vando": 37,
         "Marianjo 🐧": 17
       },
-      "total": 51
+      "total": 54
     },
     {
       "expressao": "macaco / macaquinho",
       "porPessoa": {
-        "Vando": 16,
+        "Vando": 17,
         "Marianjo 🐧": 24
       },
-      "total": 40
+      "total": 41
     },
     {
       "expressao": "serzinho",
